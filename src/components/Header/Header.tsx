@@ -18,7 +18,7 @@ export default function Header() {
         </article>
         <article className={cssClasses.headerTitles}>
           <p><strong>Melvin Doucet</strong></p>
-          <p>Full-Stack Web Development</p>
+          <p data-trl="header-subtitle"></p>
         </article>
       </section>
       <section>

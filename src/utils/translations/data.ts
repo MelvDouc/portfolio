@@ -1,6 +1,22 @@
 import type { Translation } from "@/types.js";
 
 const translations = {
+  "header-subtitle": {
+    fr: "Développement web full-stack",
+    en: "Full-stack web development",
+  },
+  "nav-home-link": {
+    fr: "Accueil",
+    en: "Home"
+  },
+  "nav-projects-link": {
+    fr: "Projets",
+    en: "Projects"
+  },
+  "nav-résumé-link": {
+    fr: "CV",
+    en: "Résumé"
+  },
   "home-title": {
     fr: "Un site sur mesure selon vos besoins",
     en: "A Website Bespoke And Exactly Your Size",

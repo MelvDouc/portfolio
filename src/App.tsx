@@ -15,7 +15,7 @@ export default function App(): DocumentFragment {
     document.documentElement.lang = language;
     updateTranslations(language);
   });
-  languageObs.value = "en";
+  languageObs.value = "fr";
 
   return (
     <>
