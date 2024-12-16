@@ -1,0 +1,71 @@
+@use "../variables" as vars;
+
+@mixin bg-dark-transparent {
+  background-color: vars.$clr_dark_transparent;
+}
+
+@mixin bg-secondary-gradient {
+  background-color: vars.$clr_blue_light;
+  background-image: linear-gradient(to right, vars.$clr_blue_lighter, vars.$clr_blue_light);
+}
+
+@mixin bg-secondary-transparent {
+  background-color: rgba(vars.$clr_blue_light, 0.5);
+}
+
+@mixin text-light {
+  color: white;
+}
+
+.bg-primary {
+  background-color: vars.$clr_green_lighter;
+}
+
+.bg-primary-gradient {
+  background-color: vars.$clr_green_lighter;
+  background-image: linear-gradient(to right, vars.$clr_green_lighter, vars.$clr_green_light);
+}
+
+.bg-primary-transparent {
+  background-color: rgba(vars.$clr_green_lighter, 0.5);
+}
+
+.bg-secondary {
+  background-color: vars.$clr_blue_light;
+}
+
+.bg-dark {
+  background-color: vars.$clr_dark;
+}
+
+.bg-dark-transparent {
+  @include bg-dark-transparent;
+}
+
+.bg-light {
+  background-color: vars.$clr_light;
+}
+
+.bg-light-transparent {
+  background-color: rgba(vars.$clr_light, 0.275);
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.bg-white-transparent {
+  background-color: rgb(255, 255, 255, 0.85);
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.text-light {
+  @include text-light;
+}
+
+.text-green {
+  color: lime;
+}

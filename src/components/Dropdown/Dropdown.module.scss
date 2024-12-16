@@ -1,0 +1,46 @@
+@use "@/styles/variables" as vars;
+
+.dropdown {
+  --triangle-rotation: -90deg;
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  summary {
+    display: flex;
+    align-items: center;
+
+    &::marker {
+      content: "";
+      display: none;
+    }
+
+    &::after {
+      content: "";
+      cursor: pointer;
+      display: inline-block;
+      width: 0.8em;
+      height: 0.8em;
+      margin-inline-start: 0.5em;
+      background-color: vars.$clr_green_light;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      rotate: var(--triangle-rotation);
+      transition: rotate 150ms ease-out;
+    }
+  }
+
+  &[open=""] {
+    --triangle-rotation: 0deg;
+  }
+
+  &Content {
+    position: absolute;
+    top: calc(100% + 0.5em);
+    z-index: 1;
+
+    @media only screen and (min-width: vars.$break-point-small) {
+      left: 50%;
+      translate: -50% 0;
+    }
+  }
+}

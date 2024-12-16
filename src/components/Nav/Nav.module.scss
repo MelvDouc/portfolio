@@ -1,0 +1,69 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  @include mixins.gap(4);
+
+  >ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+
+    >li {
+      @include mixins.padding(2);
+    }
+
+    .navLink {
+      text-transform: uppercase;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: calc(var(--gap) * -1);
+        left: 0;
+        width: 0%;
+        border-bottom: 2px solid currentColor;
+        transition: width 300ms ease-in;
+      }
+
+      &:hover::before {
+        width: 100%;
+      }
+    }
+  }
+
+  .projectLinks {
+    width: max-content;
+    display: flex;
+    flex-flow: column nowrap;
+    @include mixins.gap(2);
+    border: 1px solid blue;
+    border-radius: 4px;
+    background-color: white;
+    color: black;
+
+    a {
+      @include mixins.padding(2);
+      transition: background-color 200ms;
+      text-align: center;
+
+      &:hover {
+        background-color: blue;
+        color: white;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: vars.$break-point-small) {
+  .nav {
+    >ul {
+      flex-direction: row;
+      justify-content: space-around;
+    }
+  }
+}

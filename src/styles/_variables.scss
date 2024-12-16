@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Lato:ital,wght@0,400;0,700;1,400&display=swap&family=Orbitron:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@400;700&display=swap");
+
+// colors
+$clr_light: rgba(239, 245, 245);
+$clr_lighter: white;
+$clr_green_light: rgb(23, 145, 75);
+$clr_green_lighter: rgb(23, 145, 36);
+$clr_green_dark: rgb(9, 67, 69);
+$clr_green_darker: rgb(16, 51, 16);
+$clr_blue_light: rgb(9, 82, 241);
+$clr_blue_lighter: rgb(9, 102, 241);
+$clr_yellow: gold;
+$clr_dark: rgb(34, 34, 34);
+$clr_dark_transparent: rgb(34, 34, 34, 0.775);
+
+// font sizes
+$ff_primary: Lato, Montserrat, "Noto Sans", Verdana, Geneva, Tahoma, sans-serif;
+$ff_exo: Exo, Verdana, Arial, sans-serif;
+$ff_monospace: Orbitron, "Courier New", Courier, monospace;
+
+// break points
+$break-point-smallest: 200px;
+$break-point-smaller: 400px;
+$break-point-small: 500px;
+$break-point-medium: 620px;

@@ -1,0 +1,25 @@
+@use "../variables";
+
+.page {
+  height: 100%;
+  max-width: var(--max-page-width);
+  margin: 0 auto;
+  padding: calc(var(--gap) * 4);
+  display: flex;
+  flex-flow: column nowrap;
+  color: variables.$clr_lighter;
+
+  &.page-center {
+    justify-content: center;
+    align-items: center;
+  }
+
+  h2 {
+    background-color: variables.$clr_green_light;
+    color: white;
+    text-align: center;
+    margin-bottom: calc(var(--gap) * 2);
+    padding: var(--gap);
+    width: 100%;
+  }
+}

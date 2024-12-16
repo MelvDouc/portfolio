@@ -1,0 +1,41 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+.header {
+  @include mixins.padding(3);
+  @include mixins.gap(5);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .logo {
+    max-width: 50px;
+  }
+}
+
+.headerTop {
+  display: flex;
+  align-items: center;
+  @include mixins.gap(2);
+}
+
+.headerTitles {
+  text-transform: uppercase;
+
+  strong {
+    @include mixins.fs(6);
+  }
+}
+
+@media only screen and (min-width: vars.$break-point-medium) {
+  .header {
+    align-items: center;
+    flex-direction: row;
+  }
+}

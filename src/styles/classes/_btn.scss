@@ -1,0 +1,39 @@
+@use "../variables";
+
+@mixin btn-type($color) {
+  background-color: $color;
+
+  &:hover {
+    color: $color;
+    outline: 2px solid $color;
+    background-color: white;
+  }
+}
+
+.btn {
+  text-align: center;
+  font-size: 1rem;
+  padding: calc(var(--gap) * 1.5) calc(var(--gap) * 3);
+  border: 0;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  transition: scale 200ms;
+
+  &:active {
+    scale: 0.985;
+  }
+
+  &-primary {
+    @include btn-type(variables.$clr_green_light);
+  }
+
+  &-danger {
+    @include btn-type(hsl(0, 100%, 50%));
+  }
+}
+
+a.btn {
+  text-decoration: none;
+}

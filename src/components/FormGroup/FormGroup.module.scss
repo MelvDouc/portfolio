@@ -1,0 +1,25 @@
+@use "@/styles/mixins";
+
+.formGroup {
+  display: flex;
+  flex-flow: column wrap;
+  @include mixins.gap(1);
+
+  label {
+    text-transform: capitalize;
+  }
+
+  input,
+  textarea {
+    @include mixins.padding(1);
+    width: 100%;
+  }
+
+  input {
+    height: 2rem;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+}

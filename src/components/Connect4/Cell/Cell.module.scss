@@ -1,0 +1,35 @@
+.Cell {
+  --before-size: 70%;
+  --bg-clr1: hsl(240, 100%, 50%);
+  --bg-clr2: hsl(240, 80%, 45%);
+  display: block;
+  position: relative;
+  aspect-ratio: 1;
+  background-image: linear-gradient(to top right, var(--bg-clr1), var(--bg-clr2) 45%);
+
+  &.CellWin {
+    --bg-clr1: hsl(117.9, 39%, 43.7%);
+    --bg-clr2: hsl(118, 69%, 29%);
+  }
+
+  &[data-color="red"]::before {
+    background-color: red;
+  }
+
+  &[data-color="yellow"]::before {
+    background-color: yellow;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    display: inline-block;
+    width: var(--before-size);
+    height: var(--before-size);
+    background-color: white;
+    clip-path: circle(50%);
+  }
+}

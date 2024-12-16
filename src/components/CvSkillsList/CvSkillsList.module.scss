@@ -1,0 +1,42 @@
+.skillsList {
+  column-count: 2;
+  list-style: none;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  .rating {
+    $before-width: 75px;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      height: 1em;
+    }
+
+    &::before {
+      width: $before-width;
+      margin-right: 0.5em;
+      display: inline-block;
+    }
+
+    &::after {
+      position: absolute;
+    }
+
+    @for $i from 1 through 10 {
+      &.rating#{$i}::after {
+        width: $before-width * calc($i / 10);
+        background-color: hsl(219, $i * 10%, 50%);
+      }
+    }
+  }
+
+  @media only screen and (orientation: landscape) {
+    height: 175px;
+  }
+}

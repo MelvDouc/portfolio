@@ -1,0 +1,28 @@
+@use "@/styles/mixins" as mixins;
+@forward "classes/btn";
+@forward "classes/form";
+@forward "classes/page";
+
+@for $i from 1 through 10 {
+  .fs-#{$i} {
+    @include mixins.fs($i);
+  }
+}
+
+@for $i from 1 through 6 {
+  .mb-#{$i} {
+    margin-bottom: calc(var(--gap) * $i);
+  }
+}
+
+.grid-center {
+  @include mixins.grid-center;
+}
+
+.span-2 {
+  grid-column: span 2;
+}
+
+.text-center {
+  text-align: center;
+}

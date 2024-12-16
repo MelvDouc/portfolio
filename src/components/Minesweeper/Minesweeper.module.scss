@@ -1,0 +1,39 @@
+body.rotate-body {
+  animation: rotate_body 3s 250ms ease-out;
+}
+
+.Minesweeper {
+  width: min(100%, 600px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.MinesweeperGrid {
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column-reverse;
+
+  .MinesweeperRow {
+    display: flex;
+  }
+}
+
+.MinesweeperControls {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+@keyframes rotate_body {
+  0% {
+    transform: rotate3d(0, 0, 0, 0deg);
+  }
+
+  100% {
+    transform: rotate3d(1, 1, 1, 360deg);
+  }
+}

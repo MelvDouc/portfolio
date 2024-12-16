@@ -1,0 +1,58 @@
+@use "@/styles/variables" as vars;
+
+.switch {
+  $width: 3em;
+  $height: 1.5em;
+  $before_height: $height * 0.75;
+  $before_gap: 4px;
+
+  width: $width;
+  height: $height;
+  border-radius: 99999px;
+  position: relative;
+  cursor: pointer;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked {
+      +.slider {
+        background-color: vars.$clr_blue_light;
+
+        &::before {
+          left: $before_gap;
+        }
+      }
+    }
+
+    &:focus+.slider {
+      box-shadow: 0 0 1px vars.$clr_blue_light;
+    }
+  }
+
+  .slider {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    inset: 0;
+    background-color: gray;
+    border-radius: inherit;
+    transition: background-color 400ms;
+
+    &::before {
+      content: "";
+      height: $before_height;
+      width: $before_height;
+      position: absolute;
+      top: 50%;
+      left: calc($width - $before_height - $before_gap);
+      border-radius: 50%;
+      transform: translateY(-50%);
+      transition: left 400ms;
+      background-color: white;
+    }
+  }
+}

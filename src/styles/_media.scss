@@ -1,0 +1,14 @@
+@use "variables" as vars;
+
+@media only screen and (min-width: vars.$break-point-smallest) {
+  :root {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: vars.$break-point-smaller) {
+  :root {
+    --gap: 0.25em;
+    font-size: 16px;
+  }
+}

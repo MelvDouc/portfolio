@@ -1,0 +1,157 @@
+$hue1: 240;
+$clr1: hsl($hue1, 100%, 25%);
+$gradient1: linear-gradient(to right, $clr1, hsl($hue1, 99%, 30%));
+$main-gap: 0.4em;
+
+.cv {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  h1,
+  h2,
+  h3 {
+    color: white;
+    text-align: center;
+    font-family: inherit;
+  }
+
+  .pageTop {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: $clr1;
+    background: $gradient1;
+    padding: 0.5em;
+    position: relative;
+  }
+
+  .pageBottom {
+    display: grid;
+    grid-template-areas: "pic" "skills" "exp" "training" "languages" "contact" "hobbies";
+    gap: $main-gap;
+    padding: $main-gap;
+    background-color: hsl(0, 0%, 84%);
+
+    article {
+      padding: $main-gap;
+      border-radius: 5px;
+      background-color: white;
+    }
+
+    h3 {
+      background: $clr1;
+      background: $gradient1;
+      color: white;
+      padding: 0.33em;
+      margin-bottom: 0.33em;
+    }
+
+    .list {
+      list-style-type: none;
+
+      &.col2 {
+        column-count: 2;
+      }
+
+      li {
+        break-inside: avoid-column;
+      }
+
+      > li {
+        &::before {
+          content: "\021e8";
+          margin-right: 0.45em;
+        }
+
+        + li {
+          margin-top: 0.2em;
+        }
+
+        > div {
+          display: inline;
+        }
+      }
+
+      .subList {
+        list-style-position: inside;
+        list-style-type: circle;
+        margin-left: 1em;
+      }
+    }
+
+    .date {
+      text-decoration: underline;
+    }
+
+    .picContainer {
+      grid-area: pic;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: min(100%, 230px);
+      }
+    }
+
+    .contactDetail {
+      grid-area: contact;
+
+      dl {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.2em 0.5em;
+        margin-bottom: 0.8em;
+
+        dt {
+          img {
+            max-width: 1rem;
+          }
+        }
+
+        dd {
+          address {
+            font-style: normal;
+          }
+        }
+      }
+    }
+
+    .hobbies {
+      grid-area: hobbies;
+    }
+
+    .skills {
+      grid-area: skills;
+    }
+
+    .exp {
+      grid-area: exp;
+    }
+
+    .training {
+      grid-area: training;
+    }
+
+    .languages {
+      grid-area: languages;
+    }
+  }
+}
+
+@media only screen and (orientation: landscape) {
+  .cv {
+    .pageBottom {
+      grid-template-areas:
+        "pic skills skills"
+        "contact exp exp"
+        "hobbies training languages";
+      grid-template-columns: 1fr 2fr 1fr;
+      grid-template-rows: repeat(3, 1fr);
+    }
+  }
+}

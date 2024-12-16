@@ -1,0 +1,11 @@
+.projectsList {
+  list-style: none;
+  font-size: 1.05rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+
+  a {
+    color: white;
+  }
+}
