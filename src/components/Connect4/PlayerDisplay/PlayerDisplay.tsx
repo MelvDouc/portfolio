@@ -1,9 +1,11 @@
-import Game from "@/components/Connect4/game/Game.js";
+import type Game from "@/components/Connect4/game/Game.js";
 import Player from "@/components/Connect4/game/Player.js";
 
-export default function PlayerDisplay() {
+export default function PlayerDisplay({ game }: {
+  game: Game;
+}) {
   const $init = (element: HTMLElement) => {
-    Game.instance.onAction((action) => {
+    game.onAction((action) => {
       switch (action.kind) {
         case "player-change":
           element.innerText = `${playerDiscs[action.player]} to move`;

@@ -1,18 +1,15 @@
 import { BOARD_HEIGHT, indexOf, getX } from "@/components/Connect4/game/BoardDimensions.js";
 import Player from "@/components/Connect4/game/Player.js";
-import { clearCell, isCellSet, setCell } from "@/components/Connect4/game/bit-boards.js";
+import { not } from "@/components/Connect4/game/bit-boards.js";
 import { findWinningLine } from "@/components/Connect4/game/winning-line.js";
+import { isBitSet, singleBitBoard } from "@/utils/bitBoards.js";
 
 export default class Game {
-  public static readonly instance = new this();
-
   private readonly _bitBoards: bigint[] = Array(2).fill(0n);
   private readonly _history: HistoryItem[] = [];
   private readonly _eventTarget = new EventTarget();
   private _activePlayer: Player = Player.RED;
   private _isOver = false;
-
-  private constructor() { }
 
   private get _fullOccupancy(): bigint {
     return this._bitBoards[Player.RED] | this._bitBoards[Player.YELLOW];
@@ -27,7 +24,7 @@ export default class Game {
     if (actualIndex === -1)
       return;
 
-    this._bitBoards[this._activePlayer] = setCell(this._bitBoards[this._activePlayer], actualIndex);
+    this._bitBoards[this._activePlayer] |= singleBitBoard(actualIndex);
     this._emitSetPiece(actualIndex, this._activePlayer);
     this._history.push({
       index: actualIndex,
@@ -52,7 +49,7 @@ export default class Game {
       return;
 
     const { index: cell, activePlayer } = prevState;
-    this._bitBoards[activePlayer] = clearCell(this._bitBoards[activePlayer], cell);
+    this._bitBoards[activePlayer] &= not(singleBitBoard(cell));
     this._isOver = false;
     this._emitRemovedPiece(cell, activePlayer);
     this._setActivePlayer(activePlayer);
@@ -107,7 +104,7 @@ export default class Game {
     for (let y = 0; y < BOARD_HEIGHT; y++) {
       const cell = indexOf(y, x);
 
-      if (!isCellSet(this._fullOccupancy, cell))
+      if (!isBitSet(this._fullOccupancy, cell))
         return cell;
     }
 

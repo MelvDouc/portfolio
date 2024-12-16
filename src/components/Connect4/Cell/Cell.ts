@@ -1,15 +1,11 @@
-import Game from "@/components/Connect4/game/Game.js";
 import Player from "@/components/Connect4/game/Player.js";
 import cssClasses from "./Cell.module.scss";
 
 export default class Cell extends HTMLElement {
-  public constructor(index: number) {
+  public constructor(play: VoidFunction) {
     super();
-
     this.classList.add(cssClasses.Cell);
-    this.addEventListener("click", () => {
-      Game.instance.play(index);
-    });
+    this.addEventListener("click", play);
   }
 
   public setPiece(player: Player): void {

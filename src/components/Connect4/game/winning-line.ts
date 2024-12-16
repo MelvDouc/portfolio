@@ -1,5 +1,6 @@
-import { bitboardOf, getIndices } from "@/components/Connect4/game/bit-boards.js";
+import { bitboardOf } from "@/components/Connect4/game/bit-boards.js";
 import { BOARD_HEIGHT, BOARD_WIDTH } from "@/components/Connect4/game/BoardDimensions.js";
+import { setBits } from "@/utils/bitBoards.js";
 
 const MASK_SIZE = 4;
 
@@ -28,9 +29,9 @@ for (let y = 0; y < BOARD_HEIGHT; y++) {
 }
 
 export function findWinningLine(bitBoard: bigint): number[] | null {
-  for (let mask of allMasks)
+  for (const mask of allMasks)
     if ((bitBoard & mask) === mask)
-      return getIndices(mask);
+      return [...setBits(mask)];
 
   return null;
 }

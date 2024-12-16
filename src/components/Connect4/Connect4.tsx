@@ -5,14 +5,14 @@ import PlayerDisplay from "@/components/Connect4/PlayerDisplay/PlayerDisplay.jsx
 import SmallComponentWrapper from "@/components/SmallComponentWrapper/SmallComponentWrapper.jsx";
 
 export default function Connect4() {
-  const game = Game.instance;
+  const game = new Game();
 
   return (
     <SmallComponentWrapper>
-      <div className={cssClasses.connect4}>
-        <PlayerDisplay />
-        <Board />
-        <div className={cssClasses.connect4Buttons}>
+      <div className={cssClasses.Connect4}>
+        <PlayerDisplay game={game} />
+        <Board game={game} />
+        <div className={cssClasses.Connect4Buttons}>
           <button className="btn btn-primary" onclick={() => game.undoLastMove()}>Undo</button>
           <button className="btn btn-primary" onclick={() => game.restart()}>New Game</button>
         </div>
