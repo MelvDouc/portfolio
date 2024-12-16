@@ -2,6 +2,7 @@ import Nav from "@/components/Nav/Nav.jsx";
 import Logo from "@/assets/favicon.png";
 import cssClasses from "./Header.module.scss";
 import { path } from "@/core/Router.js";
+import Trl from "@/components/Translatable/Trl.jsx";
 
 export default function Header() {
   return (
@@ -18,7 +19,7 @@ export default function Header() {
         </article>
         <article className={cssClasses.headerTitles}>
           <p><strong>Melvin Doucet</strong></p>
-          <p data-trl="header-subtitle"></p>
+          <p><Trl en="Full-stack web development" fr="Développement web full-stack" /></p>
         </article>
       </section>
       <section>

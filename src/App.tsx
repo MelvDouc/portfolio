@@ -8,12 +8,11 @@ import PasswordGeneratorPage from "@/pages/ProjectsPage/PasswordGeneratorPage.js
 import ProjectsPage from "@/pages/ProjectsPage/ProjectsPage.jsx";
 import SnakeGamePage from "@/pages/ProjectsPage/SnakeGamePage.jsx";
 import ResumePage from "@/pages/ResumePage/ResumePage.jsx";
-import { languageObs, updateTranslations } from "@/utils/translations/translations.service.js";
+import { languageObs } from "@/core/translations.js";
 
 export default function App(): DocumentFragment {
   languageObs.subscribe((language) => {
     document.documentElement.lang = language;
-    updateTranslations(language);
   });
   languageObs.value = "fr";
 

@@ -1,5 +1,5 @@
 import NotFoundPage from "@/pages/NotFoundPage.js";
-import { languageObs, updateTranslations } from "@/utils/translations/translations.service.js";
+import { languageObs } from "@/core/translations.js";
 
 class RouterOutlet extends HTMLElement {
   private static _instance: RouterOutlet;

@@ -1,4 +1,5 @@
 import ToggleSwitch from "@/components/ToggleSwitch/ToggleSwitch.jsx";
+import Trl from "@/components/Translatable/Trl.jsx";
 import type { Obs } from "reactfree-jsx";
 
 export default function Checkbox({ key, selectedOptionsObs }: {
@@ -19,7 +20,9 @@ export default function Checkbox({ key, selectedOptionsObs }: {
 
   return (
     <div>
-      <label htmlFor={id} data-trl={`pwd-label-${key}`}></label>
+      <label htmlFor={id}>
+        <Trl {...labelTranslations[key as keyof typeof labelTranslations]} />
+      </label>
       <ToggleSwitch
         id={id}
         checked={selectedOptions.has(key)}
@@ -29,3 +32,22 @@ export default function Checkbox({ key, selectedOptionsObs }: {
     </div>
   );
 }
+
+const labelTranslations = {
+  "lowercase": {
+    fr: "minuscules",
+    en: "lowercase"
+  },
+  "uppercase": {
+    fr: "majuscules",
+    en: "uppercase"
+  },
+  "digits": {
+    fr: "chiffres",
+    en: "digits"
+  },
+  "special-chars": {
+    fr: "symboles",
+    en: "special characters"
+  }
+};
