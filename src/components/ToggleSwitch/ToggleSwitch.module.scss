@@ -1,13 +1,13 @@
 @use "@/styles/variables" as vars;
 
 .switch {
-  $width: 3em;
-  $height: 1.5em;
-  $before_height: $height * 0.75;
-  $before_gap: 4px;
+  $switch_height: 1.5em;
+  $switch_width: 3em;
+  $ball_width: $switch_height * 0.75;
+  $ball_x_offset: 4px;
 
-  width: $width;
-  height: $height;
+  width: $switch_width;
+  height: $switch_height;
   border-radius: 99999px;
   position: relative;
   cursor: pointer;
@@ -22,7 +22,7 @@
         background-color: vars.$clr_blue_light;
 
         &::before {
-          left: $before_gap;
+          left: calc($switch_width - $ball_width - $ball_x_offset);
         }
       }
     }
@@ -44,11 +44,11 @@
 
     &::before {
       content: "";
-      height: $before_height;
-      width: $before_height;
+      height: $ball_width;
+      width: $ball_width;
       position: absolute;
       top: 50%;
-      left: calc($width - $before_height - $before_gap);
+      left: $ball_x_offset;
       border-radius: 50%;
       transform: translateY(-50%);
       transition: left 400ms;

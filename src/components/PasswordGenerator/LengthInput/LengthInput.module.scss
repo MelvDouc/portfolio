@@ -1,0 +1,47 @@
+@use "@/styles/variables" as vars;
+
+.LengthInput {
+  $height: 18px;
+  width: 100%;
+
+  &[type="number"] {
+    height: 100%;
+    width: min(50%, 40px);
+    font-size: 1rem;
+  }
+
+  &[type="range"] {
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    height: $height;
+    opacity: 0.8;
+    background-color: vars.$clr_dark;
+    transition: 200ms;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &::-webkit-slider-runnable-track {
+      content: "";
+      width: 100%;
+      height: $height;
+      border: 0;
+    }
+
+    &::-webkit-slider-thumb,
+    &::-moz-range-thumb {
+      appearance: none;
+      width: $height;
+      height: $height;
+      border-radius: 0px;
+      border: 0;
+      background-color: vars.$clr_green_lighter;
+    }
+
+    &::-webkit-slider-thumb {
+      margin-top: 1px;
+    }
+  }
+}

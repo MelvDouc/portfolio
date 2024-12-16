@@ -1,0 +1,12 @@
+@use "../../../styles/variables" as vars;
+
+.Checkbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  >label {
+    text-transform: capitalize;
+    color: vars.$clr_dark;
+  }
+}
