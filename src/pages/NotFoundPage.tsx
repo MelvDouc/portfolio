@@ -1,4 +1,4 @@
-import Page from "@/components/Page.jsx";
+import Page from "@/components/Page/Page.jsx";
 import { path } from "@/core/Router.js";
 
 export default function NotFoundPage() {

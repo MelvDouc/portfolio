@@ -1,7 +1,6 @@
 @use "@/styles/mixins" as mixins;
 @forward "classes/btn";
 @forward "classes/form";
-@forward "classes/page";
 
 @for $i from 1 through 10 {
   .fs-#{$i} {

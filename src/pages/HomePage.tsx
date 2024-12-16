@@ -1,17 +1,26 @@
-export default function HomePage() {
-  document.title = "Home | Melvin Doucet's website";
+import Page from "@/components/Page/Page.jsx";
 
+export default function HomePage(): HTMLElement {
   return (
-    <div className="page page-center">
-      <section>
-        <h1 data-trl="home-title"></h1>
-      </section>
+    <Page
+      title="Home"
+      inPageTitle={<HomePageTitle />}
+      center
+    >
       <section className="fs-5">
         <div>
           <p className="mb-2" data-trl="home-intro1"></p>
           <p data-trl="home-intro2"></p>
         </div>
       </section>
-    </div>
+    </Page>
+  );
+}
+
+function HomePageTitle(): HTMLElement {
+  return (
+    <section>
+      <h1 data-trl="home-title"></h1>
+    </section>
   );
 }

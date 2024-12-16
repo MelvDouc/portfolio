@@ -1,15 +1,15 @@
-@use "../variables";
+@use "../../styles/variables";
 
-.page {
+.Page {
   height: 100%;
-  max-width: var(--max-page-width);
+  width: min(100%, var(--max-page-width));
   margin: 0 auto;
   padding: calc(var(--gap) * 4);
   display: flex;
   flex-flow: column nowrap;
   color: variables.$clr_lighter;
 
-  &.page-center {
+  &.Center {
     justify-content: center;
     align-items: center;
   }

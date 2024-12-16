@@ -1,0 +1,27 @@
+@use "../../styles/variables";
+
+.ProjectList {
+  list-style: none;
+  font-size: 1.05rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+
+  li {
+    padding: 0.5em;
+    background-color: variables.$clr_green_light;
+    color: white;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      scale: 1.05;
+      color: orange;
+    }
+  }
+
+  a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+}

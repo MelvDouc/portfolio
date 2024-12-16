@@ -1,14 +1,14 @@
-import Calculator from "@/components/Calculator/Calculator.jsx";
-import Connect4 from "@/components/Connect4/Connect4.jsx";
 import Header from "@/components/Header/Header.jsx";
-import Minesweeper from "@/components/Minesweeper/Minesweeper.jsx";
-import PasswordGenerator from "@/components/PasswordGenerator/PasswordGenerator.jsx";
-import SnakeGame from "@/components/SnakeGame/SnakeGame.jsx";
+import { Route, Router } from "@/core/Router.js";
 import HomePage from "@/pages/HomePage.jsx";
+import CalculatorPage from "@/pages/ProjectsPage/CalculatorPage.jsx";
+import Connect4Page from "@/pages/ProjectsPage/Connect4Page.jsx";
+import MinesweeperPage from "@/pages/ProjectsPage/MinesweeperPage.jsx";
+import PasswordGeneratorPage from "@/pages/ProjectsPage/PasswordGeneratorPage.jsx";
 import ProjectsPage from "@/pages/ProjectsPage/ProjectsPage.jsx";
+import SnakeGamePage from "@/pages/ProjectsPage/SnakeGamePage.jsx";
 import ResumePage from "@/pages/ResumePage/ResumePage.jsx";
 import { languageObs, updateTranslations } from "@/utils/translations/translations.service.js";
-import { Route, Router } from "@/core/Router.js";
 
 export default function App(): DocumentFragment {
   languageObs.subscribe((language) => {
@@ -25,11 +25,11 @@ export default function App(): DocumentFragment {
           <Route page="home" component={HomePage} />
           <Route page="projects" component={ProjectsPage} />
           <Route page="cv" component={ResumePage} />
-          <Route page="calculator" component={Calculator} />
-          <Route page="connect-4" component={Connect4} />
-          <Route page="minesweeper" component={Minesweeper} />
-          <Route page="password-generator" component={PasswordGenerator} />
-          <Route page="snake" component={SnakeGame} />
+          <Route page="calculator" component={CalculatorPage} />
+          <Route page="connect-4" component={Connect4Page} />
+          <Route page="minesweeper" component={MinesweeperPage} />
+          <Route page="password-generator" component={PasswordGeneratorPage} />
+          <Route page="snake" component={SnakeGamePage} />
         </Router>
       </main>
     </>
