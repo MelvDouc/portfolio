@@ -1,13 +1,15 @@
 import favicon from "@/assets/favicon.png";
 import githubLogo from "@/assets/github-logo.png";
 import ownPicture from "@/assets/melvin-doucet.jpg";
-import CvSkillsList from "@/components/CvSkillsList/CvSkillsList.jsx";
-import cssClasses from "./ResumePage.module.scss";
+import ResumeSkillList from "@/components/Résumé/SkillList/SkillList.jsx";
 import Trl from "@/components/Translatable/Trl.jsx";
+import cssClasses from "./Résumé.module.scss";
 
-export default function ResumePage() {
+export default function Resume() {
+  const website = "https://melvdouc.github.io/static-website/";
+
   return (
-    <div className={cssClasses.cv}>
+    <div className={cssClasses.Resume}>
       <section className={cssClasses.pageTop}>
         <h1><Trl fr="CV de Melvin DOUCET" en="Melvin Doucet's Résumé" /></h1>
         <h2><Trl fr="Développeur full-stack" en="Full-Stack Developer" /></h2>
@@ -28,7 +30,7 @@ export default function ResumePage() {
             <dt><img src={githubLogo} alt="GitHub Logo" /></dt>
             <dd><a href="https://github.com/MelvDouc">https://github.com/MelvDouc</a></dd>
             <dt><img src={favicon} alt="Logo" /></dt>
-            <dd><a href="https://www.melvin-doucet.com">https://www.melvin-doucet.com</a></dd>
+            <dd><a href={website}>{website}</a></dd>
             <dt>✉️</dt>
             <dd>
               <address>
@@ -50,7 +52,7 @@ export default function ResumePage() {
 
         <article className={cssClasses.skills}>
           <h3><Trl fr="Compétences" en="Skills" /></h3>
-          <CvSkillsList />
+          <ResumeSkillList />
         </article>
 
         <article className={cssClasses.exp}>
@@ -97,7 +99,7 @@ export default function ResumePage() {
                 <li><Trl fr="université du Saulcy à Metz" en="Saulcy University, Metz" /></li>
               </ul>
             </li>
-            <li><span className={cssClasses.date}>2009</span> <Trl fr="Bac L" en="Literary Baccalauréat" />
+            <li><span className={cssClasses.date}>2009</span> <Trl fr="Bac L" en="Literary baccalauréat" />
               <ul className={cssClasses.subList}>
                 <li><Trl fr="15,15 de moyenne (mention Bien)" en="15.15/20 average score" /></li>
               </ul>

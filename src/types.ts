@@ -6,4 +6,3 @@ export interface Coords {
 }
 
 export type Language = "fr" | "en";
-export type Translation = Record<Language, string>;

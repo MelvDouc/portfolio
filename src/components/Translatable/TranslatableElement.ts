@@ -6,6 +6,7 @@ export default class TranslatableElement extends HTMLElement {
   constructor(translations: Record<string, string>) {
     super();
     this._translations = translations;
+    this.innerText = this._translations[languageObs.value];
   }
 
   connectedCallback(): void {

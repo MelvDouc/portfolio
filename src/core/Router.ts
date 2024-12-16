@@ -1,5 +1,4 @@
 import NotFoundPage from "@/pages/NotFoundPage.js";
-import { languageObs } from "@/core/translations.js";
 
 class RouterOutlet extends HTMLElement {
   private static _instance: RouterOutlet;
@@ -32,7 +31,7 @@ class RouterOutlet extends HTMLElement {
   }
 
   private _findRoute(searchParams: URLSearchParams): IRoute | null {
-    const page = searchParams.get("page") ?? "home";
+    const page = searchParams.get("page") ?? "";
     return this._routes.find((r) => r.page === page) ?? null;
   }
 
@@ -46,7 +45,6 @@ class RouterOutlet extends HTMLElement {
       ? () => route.component(Object.fromEntries([...searchParams]))
       : NotFoundPage;
     await this._updateUI(component);
-    languageObs.notify();
   }
 
   private async _navigateToCurrent(): Promise<void> {
