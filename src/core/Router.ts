@@ -23,14 +23,6 @@ class RouterOutlet extends HTMLElement {
     });
     document.addEventListener("click", async (e) => {
       await this._handleAnchorNav(e);
-    }, { capture: true });
-
-    languageObs.subscribe((language) => {
-      if (language === document.documentElement.lang)
-        return;
-
-      document.documentElement.lang = language;
-      updateTranslations(language);
     });
     await this._navigateToCurrent();
   }
