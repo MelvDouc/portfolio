@@ -1,6 +1,4 @@
 import Header from "@/components/Header/Header.jsx";
-import { Route, Router } from "@/core/Router.js";
-import { languageObs } from "@/core/translations.js";
 import HomePage from "@/pages/HomePage.jsx";
 import CalculatorPage from "@/pages/projects/CalculatorPage.jsx";
 import Connect4Page from "@/pages/projects/Connect4Page.jsx";
@@ -9,9 +7,11 @@ import PasswordGeneratorPage from "@/pages/projects/PasswordGeneratorPage.jsx";
 import SnakeGamePage from "@/pages/projects/SnakeGamePage.jsx";
 import ProjectsPage from "@/pages/ProjectsPage.jsx";
 import ResumePage from "@/pages/ResumePage.jsx";
+import { Route, Router } from "@/services/router.service.js";
+import { onLanguageChange } from "@/services/translations.service.js";
 
 export default function App(): DocumentFragment {
-  languageObs.subscribe((language) => {
+  onLanguageChange((language) => {
     document.documentElement.lang = language;
   });
 

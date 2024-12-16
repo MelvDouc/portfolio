@@ -1,0 +1,17 @@
+@use "@/styles/variables" as vars;
+
+.PicContainer {
+  --pic-min-size: 100px;
+  grid-area: p;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media only screen and (min-width: vars.$break-point-small) {
+    --pic-min-size: 230px;
+  }
+
+  img {
+    width: min(100%, var(--pic-min-size));
+  }
+}

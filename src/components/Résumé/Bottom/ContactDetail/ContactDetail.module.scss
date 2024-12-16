@@ -1,0 +1,21 @@
+.ContactDetail {
+  grid-area: c;
+
+  dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--gap) calc(var(--gap) * 2);
+
+    dt {
+      img {
+        max-width: 1rem;
+      }
+    }
+
+    dd {
+      address {
+        font-style: normal;
+      }
+    }
+  }
+}

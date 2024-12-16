@@ -23,30 +23,35 @@ export default function PasswordGenerator(): HTMLElement {
   let len = 25;
   let password = createPassword(options, len) as string;
 
-  eventEmitter.on("charOptionToggled", (charOption) => {
-    options[charOption] = !options[charOption];
-    eventEmitter.emit("updateRequest");
-  });
-  eventEmitter.on("lengthChange", (value) => {
-    len = value;
-    eventEmitter.emit("updateRequest");
-  });
-  eventEmitter.on("updateRequest", () => {
-    const newPassword = createPassword(options, len);
+  const [onLengthChange, emitLengthChange] = eventEmitter.createHandlers("lengthChange");
+  const [onCharOptionToggled, emitCharOptionToggled] = eventEmitter.createHandlers("charOptionToggled");
+  const [onUpdateRequest, emitUpdateRequest] = eventEmitter.createHandlers("updateRequest");
+  const [onCopyRequest, emitCopyRequest] = eventEmitter.createHandlers("copyRequest");
+  const [onUpdated, emitUpdated] = eventEmitter.createHandlers("updated");
 
-    if (newPassword) {
-      password = newPassword;
-      eventEmitter.emit("updated");
-    }
+
+  onLengthChange((value) => {
+    len = value;
+    emitUpdateRequest();
   });
-  eventEmitter.on("copyRequest", async () => {
+  onCharOptionToggled((charOption) => {
+    options[charOption] = !options[charOption];
+    emitUpdateRequest();
+  });
+  onUpdateRequest(() => {
+    const newPassword = createPassword(options, len);
+    if (!newPassword) return;
+    password = newPassword;
+    emitUpdated();
+  });
+  onCopyRequest(async () => {
     await copyPasswordToClipboard(password);
   });
 
   return (
     <div className={cssClasses.PasswordGenerator}>
       <section className={cssClasses.Top}>
-        <output $init={(element) => eventEmitter.on("updated", () => element.innerText = password)}>
+        <output $init={(element) => onUpdated(() => element.innerText = password)}>
           {password}
         </output>
       </section>
@@ -55,14 +60,14 @@ export default function PasswordGenerator(): HTMLElement {
           <LengthInput
             type="number"
             initialLength={len}
-            onLengthChange={(listener) => eventEmitter.on("lengthChange", listener)}
-            emitLengthChange={(len) => eventEmitter.emit("lengthChange", len)}
+            onLengthChange={onLengthChange}
+            emitLengthChange={emitLengthChange}
           />
           <LengthInput
             type="range"
             initialLength={len}
-            onLengthChange={(listener) => eventEmitter.on("lengthChange", listener)}
-            emitLengthChange={(len) => eventEmitter.emit("lengthChange", len)}
+            onLengthChange={onLengthChange}
+            emitLengthChange={emitLengthChange}
           />
         </article>
         <article className={cssClasses.Checkboxes}>
@@ -70,15 +75,15 @@ export default function PasswordGenerator(): HTMLElement {
             <Checkbox
               charOption={charOption}
               checked={options[charOption]}
-              emitToggle={() => eventEmitter.emit("charOptionToggled", charOption)}
+              emitToggle={() => emitCharOptionToggled(charOption)}
             />
           ))}
         </article>
         <article className={cssClasses.Controls}>
-          <button className="btn btn-primary" onclick={() => eventEmitter.emit("updateRequest")}>
+          <button className="btn btn-primary" onclick={emitUpdateRequest}>
             <Trl fr="Nouveau" en="New password" />
           </button>
-          <button className="btn btn-primary" onclick={() => eventEmitter.emit("copyRequest")}>
+          <button className="btn btn-primary" onclick={emitCopyRequest}>
             <Trl fr="Copier" en="Copy password" />
           </button>
         </article>

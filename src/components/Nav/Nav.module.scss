@@ -37,7 +37,6 @@
   }
 
   .projectLinks {
-    width: max-content;
     display: flex;
     flex-flow: column nowrap;
     @include mixins.gap(2);

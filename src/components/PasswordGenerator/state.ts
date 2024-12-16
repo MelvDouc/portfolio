@@ -28,14 +28,8 @@ export function createPassword(options: Record<CharOption, boolean>, len: number
   if (charFunctions.length === 0)
     return null;
 
-  const chars: string[] = [];
-
-  while (chars.length < len) {
-    for (const fn of charFunctions)
-      chars.push(fn());
-  }
-
-  return shuffleArray(chars).slice(0, len).join("");
+  const chars = Array.from({ length: len }, (_, i) => charFunctions[i % charFunctions.length]());
+  return shuffleArray(chars).join("");
 }
 
 export type CharOption = typeof CHAR_OPTIONS[number];

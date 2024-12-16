@@ -4,6 +4,8 @@ $gradient1: linear-gradient(to right, $clr1, hsl($hue1, 99%, 30%));
 
 .Resume {
   height: 100%;
+  width: min(100%, var(--max-page-width));
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   font-family: Verdana, Geneva, Tahoma, sans-serif;

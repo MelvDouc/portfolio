@@ -18,16 +18,15 @@ class RouterOutlet extends HTMLElement {
 
   async connectedCallback(): Promise<void> {
     window.addEventListener("popstate", async () => {
-      await this._navigateToCurrent();
+      await this._updateCurrentUI();
     });
-    document.addEventListener("click", async (e) => {
-      await this._handleAnchorNav(e);
-    });
-    await this._navigateToCurrent();
+    await this._updateCurrentUI();
   }
 
-  public async navigate(url: string): Promise<void> {
-    await this._navigate(new URL(url));
+  public async navigate(url: string | URL): Promise<void> {
+    const urlObject = url instanceof URL ? url : new URL(url);
+    await this._updateUI(urlObject);
+    history.pushState({}, "", urlObject);
   }
 
   private _findRoute(searchParams: URLSearchParams): IRoute | null {
@@ -35,43 +34,15 @@ class RouterOutlet extends HTMLElement {
     return this._routes.find((r) => r.page === page) ?? null;
   }
 
-  private async _updateUI(component: () => Node | Promise<Node>): Promise<void> {
-    this.replaceChildren(await component());
-  }
-
-  private async _navigate({ searchParams }: URL): Promise<void> {
+  private async _updateUI({ searchParams }: URL): Promise<void> {
     const route = this._findRoute(searchParams);
-    const component = route
-      ? () => route.component(Object.fromEntries([...searchParams]))
-      : NotFoundPage;
-    await this._updateUI(component);
+    const component = route?.component ?? NotFoundPage;
+    const pageProps = Object.fromEntries([...searchParams]);
+    this.replaceChildren(await component(pageProps));
   }
 
-  private async _navigateToCurrent(): Promise<void> {
-    await this._navigate(new URL(location.href));
-  }
-
-  private async _handleAnchorNav(e: Event): Promise<void> {
-    const { target } = e;
-
-    if (!(target instanceof HTMLElement))
-      return;
-
-    const anchor = target instanceof HTMLAnchorElement
-      ? target
-      : target.closest("a");
-
-    if (!anchor)
-      return;
-
-    const url = new URL(anchor.href);
-
-    if (url.origin !== location.origin)
-      return;
-
-    e.preventDefault();
-    await this._navigate(url);
-    history.pushState({}, "", url);
+  private async _updateCurrentUI(): Promise<void> {
+    await this._updateUI(new URL(location.href));
   }
 }
 
@@ -87,7 +58,7 @@ export function Route(props: IRoute): IRoute {
   return props;
 }
 
-export async function navigate(url: string): Promise<void> {
+export async function navigate(url: string | URL): Promise<void> {
   await RouterOutlet.instance.navigate(url);
 }
 

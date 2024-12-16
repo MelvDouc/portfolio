@@ -1,3 +1,5 @@
+@use "@/styles/variables" as vars;
+
 $main-gap: 0.4em;
 $hue1: 240;
 $clr1: hsl($hue1, 100%, 25%);
@@ -22,44 +24,7 @@ $gradient1: linear-gradient(to right, $clr1, hsl($hue1, 99%, 30%));
     margin-bottom: 0.33em;
   }
 
-  .List {
-    list-style-type: none;
-
-    &.col2 {
-      column-count: 2;
-    }
-
-    li {
-      break-inside: avoid-column;
-    }
-
-    >li {
-      &::before {
-        content: "\021e8";
-        margin-right: 0.45em;
-      }
-
-      +li {
-        margin-top: 0.2em;
-      }
-
-      >div {
-        display: inline;
-      }
-    }
-
-    .SubList {
-      list-style-position: inside;
-      list-style-type: circle;
-      margin-left: 1em;
-    }
-  }
-
-  .Date {
-    text-decoration: underline;
-  }
-
-  @media screen and (width >=600px) {
+  @media screen and (min-width: vars.$break-point-small) {
     display: grid;
     gap: $main-gap;
     grid-template-areas:
@@ -88,58 +53,4 @@ $gradient1: linear-gradient(to right, $clr1, hsl($hue1, 99%, 30%));
       font-size: 0.895rem;
     }
   }
-}
-
-.PicContainer {
-  grid-area: p;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  img {
-    width: min(100%, 230px);
-  }
-}
-
-.ContactDetail {
-  grid-area: c;
-
-  dl {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0.2em 0.5em;
-    margin-bottom: 0.8em;
-
-    dt {
-      img {
-        max-width: 1rem;
-      }
-    }
-
-    dd {
-      address {
-        font-style: normal;
-      }
-    }
-  }
-}
-
-.Hobbies {
-  grid-area: h;
-}
-
-.Skills {
-  grid-area: s;
-}
-
-.Exp {
-  grid-area: e;
-}
-
-.Training {
-  grid-area: t;
-}
-
-.Languages {
-  grid-area: l;
 }

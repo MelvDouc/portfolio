@@ -21,6 +21,7 @@
 
 .headerTop {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   @include mixins.gap(2);
 }

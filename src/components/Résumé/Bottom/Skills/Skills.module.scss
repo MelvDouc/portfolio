@@ -1,14 +1,29 @@
 @use "@/styles/mixins";
 @use "@/styles/variables" as vars;
 
+.Skills {
+  grid-area: s;
+}
+
 .SkillList {
   list-style: none;
+
+  li {
+    display: flex;
+    flex-flow: row wrap;
+    @include mixins.gap(2);
+  }
+
+  @media only screen and (min-width: vars.$break-point-smaller) {
+    li {
+      flex-flow: row nowrap;
+    }
+  }
 }
 
 .Circles {
   display: inline-flex;
   @include mixins.gap(1);
-  margin-inline-end: 0.5em;
 
   .Circle {
     --size: 1em;
