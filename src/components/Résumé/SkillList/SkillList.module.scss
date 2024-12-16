@@ -1,42 +1,29 @@
+@use "@/styles/mixins";
+@use "@/styles/variables" as vars;
+
 .SkillList {
-  column-count: 2;
   list-style: none;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+}
 
-  .rating {
-    $before-width: 75px;
-    display: flex;
-    align-items: center;
-    position: relative;
+.Circles {
+  display: inline-flex;
+  @include mixins.gap(1);
+  margin-inline-end: 0.5em;
 
-    &::before,
-    &::after {
-      content: "";
-      height: 1em;
+  .Circle {
+    --size: 1em;
+    display: inline-block;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background-color: lightgray;
+
+    @media print {
+      --size: 0.85em;
     }
 
-    &::before {
-      width: $before-width;
-      margin-right: 0.5em;
-      display: inline-block;
+    &.CircleFilled {
+      background-color: vars.$clr_green_light;
     }
-
-    &::after {
-      position: absolute;
-    }
-
-    @for $i from 1 through 10 {
-      &.rating#{$i}::after {
-        width: $before-width * calc($i / 10);
-        background-color: hsl(219, $i * 10%, 50%);
-      }
-    }
-  }
-
-  @media only screen and (orientation: landscape) {
-    height: 175px;
   }
 }

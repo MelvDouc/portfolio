@@ -23,11 +23,19 @@ body {
   @include mixins.bg-center(cover);
   background-color: white;
   background-image: linear-gradient(to bottom, rgb(0, 0, 0, 0.85), rgb(0, 0, 0, 0.8)), url("/img/bg-main.jpg");
+
+  @media print {
+    background: initial;
+  }
 }
 
 main {
   overflow-y: auto;
   display: grid;
+
+  @media print {
+    overflow-y: initial;
+  }
 }
 
 h1 {
