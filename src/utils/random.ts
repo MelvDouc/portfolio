@@ -21,11 +21,9 @@ export function randomSpecialChar(): string {
   return specialChars[randomInt(0, specialChars.length - 1)];
 }
 
-export function shuffleArray<T extends Array<unknown>>(array: T): T {
-  let i: number, j: number;
-
-  for (i = array.length - 1; i > 0; i--) {
-    j = randomInt(0, i);
+export function shuffleArray<T>(array: T[]): T[] {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = randomInt(0, i);
     [array[i], array[j]] = [array[j], array[i]];
   }
 
