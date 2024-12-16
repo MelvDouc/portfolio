@@ -8,6 +8,7 @@
   @include mixins.bg-center(100%);
   background-image: radial-gradient(white, rgb(235, 235, 245));
   user-select: none;
+  color: black;
 
   &[data-covered="1"] {
     background-image: linear-gradient(var(--bg-orientation), hsl(200, 80%, 20%), rgb(245, 245, 245));
