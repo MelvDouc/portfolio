@@ -3,12 +3,16 @@
 
 .SkillList {
   list-style: none;
+
+  li {
+    display: flex;
+    @include mixins.gap(2);
+  }
 }
 
 .Circles {
   display: inline-flex;
   @include mixins.gap(1);
-  margin-inline-end: 0.5em;
 
   .Circle {
     --size: 1em;
