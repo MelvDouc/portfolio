@@ -1,6 +1,10 @@
 @use "@/styles/mixins";
 @use "@/styles/variables" as vars;
 
+.Skills {
+  grid-area: s;
+}
+
 .SkillList {
   list-style: none;
 
