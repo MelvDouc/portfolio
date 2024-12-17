@@ -1,14 +1,10 @@
 @use "sass:color";
 @use "@/styles/reset";
-@use "@/styles/variables" as vars;
-@use "@/styles/mixins" as mixins;
+@use "@/styles/base";
 @use "@/styles/classes";
 @use "@/styles/media";
-
-:root {
-  --gap: 0.2em;
-  --max-page-width: 700px;
-}
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
 
 html,
 body {

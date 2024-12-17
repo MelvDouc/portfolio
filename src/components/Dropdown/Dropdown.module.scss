@@ -37,10 +37,12 @@
     position: absolute;
     top: calc(100% + 0.5em);
     z-index: 1;
+    width: 100%;
 
     @media only screen and (min-width: vars.$break-point-small) {
       left: 50%;
       translate: -50% 0;
+      width: max-content;
     }
   }
 }

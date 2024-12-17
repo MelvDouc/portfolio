@@ -1,9 +1,12 @@
+@use "@/styles/variables" as vars;
+
 $main-gap: 0.4em;
 $hue1: 240;
 $clr1: hsl($hue1, 100%, 25%);
 $gradient1: linear-gradient(to right, $clr1, hsl($hue1, 99%, 30%));
 
 .Bottom {
+  --pic-min-size: 100px;
   flex: 1;
   padding: $main-gap;
   background-color: hsl(0, 0%, 84%);
@@ -24,10 +27,6 @@ $gradient1: linear-gradient(to right, $clr1, hsl($hue1, 99%, 30%));
 
   .List {
     list-style-type: none;
-
-    &.col2 {
-      column-count: 2;
-    }
 
     li {
       break-inside: avoid-column;
@@ -59,7 +58,8 @@ $gradient1: linear-gradient(to right, $clr1, hsl($hue1, 99%, 30%));
     text-decoration: underline;
   }
 
-  @media screen and (width >=600px) {
+  @media screen and (min-width: vars.$break-point-small) {
+    --pic-min-size: 230px;
     display: grid;
     gap: $main-gap;
     grid-template-areas:
@@ -67,6 +67,10 @@ $gradient1: linear-gradient(to right, $clr1, hsl($hue1, 99%, 30%));
       "s s t t t t"
       "s s e e e e"
       "l l l l h h";
+
+    .List.col2 {
+      column-count: 2;
+    }
   }
 
   @media print {
@@ -91,13 +95,14 @@ $gradient1: linear-gradient(to right, $clr1, hsl($hue1, 99%, 30%));
 }
 
 .PicContainer {
+
   grid-area: p;
   display: flex;
   justify-content: center;
   align-items: center;
 
   img {
-    width: min(100%, 230px);
+    width: min(100%, var(--pic-min-size));
   }
 }
 

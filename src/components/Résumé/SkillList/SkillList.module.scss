@@ -6,7 +6,14 @@
 
   li {
     display: flex;
+    flex-flow: row wrap;
     @include mixins.gap(2);
+  }
+
+  @media only screen and (min-width: vars.$break-point-smaller) {
+    li {
+      flex-flow: row nowrap;
+    }
   }
 }
 
