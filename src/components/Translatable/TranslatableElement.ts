@@ -1,4 +1,4 @@
-import { languageObs } from "@/core/translations.js";
+import { getLanguage, onLanguageChange } from "@/services/translations.service.js";
 
 export default class TranslatableElement extends HTMLElement {
   private readonly _translations: Record<string, string>;
@@ -6,11 +6,11 @@ export default class TranslatableElement extends HTMLElement {
   constructor(translations: Record<string, string>) {
     super();
     this._translations = translations;
-    this.innerText = this._translations[languageObs.value];
+    this.innerText = this._translations[getLanguage()];
   }
 
   connectedCallback(): void {
-    const unsubscribe = languageObs.subscribe((lang) => {
+    const unsubscribe = onLanguageChange((lang) => {
       if (lang in this._translations)
         this.innerText = this._translations[lang];
     });
