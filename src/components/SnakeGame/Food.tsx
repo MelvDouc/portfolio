@@ -1,22 +1,26 @@
 import food from "@/assets/snake/food.png";
+import type Snake from "@/components/SnakeGame/Snake.js";
 import { randomInt } from "@/utils/random.js";
-import type SnakeCanvas from "./SnakeCanvas.jsx";
 
 export default class Food {
+  private static randomCoord(squaresPerLine: number, squareSize: number): number {
+    return randomInt(0, squaresPerLine - 1) * squareSize;
+  }
+
   public readonly image: HTMLImageElement;
   public x: number;
   public y: number;
-  public randomizeCoords: VoidFunction;
 
-  constructor({ width, squareSize, squaresPerLine, snake }: SnakeCanvas) {
-    this.image = <img src={food} />;
+  constructor(width: number, squareSize: number) {
+    this.image = (<img src={food} />);
     this.x = width - squareSize * 2;
     this.y = squareSize;
-    this.randomizeCoords = () => {
-      do {
-        this.x = randomInt(0, squaresPerLine - 1) * squareSize;
-        this.y = randomInt(0, squaresPerLine - 1) * squareSize;
-      } while (snake.some(({ x, y }) => x === this.x && y === this.y));
-    };
+  }
+
+  public randomizeCoords(squaresPerLine: number, squareSize: number, snake: Snake): void {
+    do {
+      this.x = Food.randomCoord(squaresPerLine, squareSize);
+      this.y = Food.randomCoord(squaresPerLine, squareSize);
+    } while (snake.some(({ x, y }) => x === this.x && y === this.y));
   }
 }

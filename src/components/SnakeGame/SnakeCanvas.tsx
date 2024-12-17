@@ -1,41 +1,44 @@
 import AlertBox from "@/components/AlertBox/AlertBox.jsx";
-import { setIntervalOnAnimationFrame } from "@/utils/animation.js";
-import Food from "./Food.jsx";
-import Snake from "./Snake.js";
+import Food from "@/components/SnakeGame/Food.jsx";
+import Snake from "@/components/SnakeGame/Snake.js";
+import { setIntervalOnAnimationFrame } from "@/services/animations.service.js";
 
 export default class SnakeCanvas extends HTMLCanvasElement {
+  private static readonly CLR_NOKIA_SCREEN = "#C7F0D8";
+  private static readonly CLR_NOKIA_TEXT = "#43523D";
+
   public readonly squaresPerLine: number = 15;
   public readonly squareSize: number;
   public readonly snake: Snake;
   public readonly food: Food;
   public score = 0;
-  private readonly steerSnake: (e: KeyboardEvent) => void;
 
   constructor() {
     super();
     this.width = this.getIdealWidth();
     this.squareSize = this.width / this.squaresPerLine;
     this.height = this.width;
-    this.snake = new Snake(this);
-    this.food = new Food(this);
-    this.steerSnake = (e) => this.snake.steer(e.key);
+    const initialSnakeXY = (Math.ceil(this.squaresPerLine / 2) - 1) * this.squareSize;
+    this.snake = new Snake(initialSnakeXY);
+    this.food = new Food(this.width, this.squareSize);
   }
 
   connectedCallback() {
-    document.addEventListener("keydown", this.steerSnake);
-    this.playGame();
+    const ctx = this._init();
+
+    const start = (e: KeyboardEvent): void => {
+      if (!e.key.startsWith("Arrow")) return;
+      this._steerSnake(e);
+      document.addEventListener("keydown", this._steerSnake);
+      document.removeEventListener("keydown", start);
+      this._playGame(ctx);
+    };
+
+    document.addEventListener("keydown", start);
   }
 
   disconnectedCallback() {
-    document.removeEventListener("keydown", this.steerSnake);
-  }
-
-  private createGradient(ctx: CanvasRenderingContext2D) {
-    const gradient = ctx.createLinearGradient(0, 0, this.width, 0);
-    gradient.addColorStop(0, "#33DD24");
-    gradient.addColorStop(0.5, "#83E358");
-    gradient.addColorStop(1, "#33DD24");
-    return gradient;
+    document.removeEventListener("keydown", this._steerSnake);
   }
 
   private getIdealWidth(): number {
@@ -45,14 +48,8 @@ export default class SnakeCanvas extends HTMLCanvasElement {
     return Math.min(width, 600);
   }
 
-  private playGame(): void {
-    const ctx = this.getContext("2d")!;
-    const { width, squareSize, snake, food } = this;
+  private _playGame(ctx: CanvasRenderingContext2D): void {
     const abortController = new AbortController();
-    ctx.font = "45px Verdana";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    const gradient = this.createGradient(ctx);
 
     abortController.signal.addEventListener("abort", () => {
       AlertBox.create({
@@ -61,34 +58,60 @@ export default class SnakeCanvas extends HTMLCanvasElement {
     });
 
     setIntervalOnAnimationFrame(() => {
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, width, width);
-      ctx.fillStyle = "white";
-      ctx.fillText(`${this.score}`, width / 2, width / 2);
-      ctx.fillStyle = "purple";
-      ctx.strokeStyle = "lightpurple";
+      this._paintBackground(ctx);
+      this._paintSnake(ctx);
+      this._paintFood(ctx);
+      const newHead = this.snake.getNewHead(this.width, this.squareSize);
 
-      for (const { x, y } of snake) {
-        ctx.fillRect(x, y, squareSize, squareSize);
-        ctx.strokeRect(x, y, squareSize, squareSize);
-      }
-
-      ctx.drawImage(food.image, food.x, food.y, squareSize, squareSize);
-      const newHead = snake.getNewHead();
-
-      if (newHead.x === food.x && newHead.y === food.y) {
+      if (newHead.x === this.food.x && newHead.y === this.food.y) {
         this.score++;
-        food.randomizeCoords();
+        this.food.randomizeCoords(this.squaresPerLine, this.squareSize, this.snake);
       } else {
-        snake.pop();
+        this.snake.pop();
       }
 
-      if (snake.isCollision(newHead))
+      if (this.snake.isCollision(newHead))
         abortController.abort();
 
-      snake.unshift(newHead);
+      this.snake.unshift(newHead);
     }, 100, abortController);
   }
+
+  private _paintBackground(ctx: CanvasRenderingContext2D): void {
+    ctx.fillStyle = SnakeCanvas.CLR_NOKIA_SCREEN;
+    ctx.fillRect(0, 0, this.width, this.width);
+    ctx.fillStyle = SnakeCanvas.CLR_NOKIA_TEXT;
+    ctx.fillText(this.score.toString(), this.width / 2, this.width / 2);
+  }
+
+  private _paintSnake(ctx: CanvasRenderingContext2D): void {
+    ctx.fillStyle = SnakeCanvas.CLR_NOKIA_TEXT;
+    ctx.strokeStyle = SnakeCanvas.CLR_NOKIA_SCREEN;
+
+    for (const { x, y } of this.snake) {
+      ctx.fillRect(x, y, this.squareSize, this.squareSize);
+      ctx.strokeRect(x, y, this.squareSize, this.squareSize);
+    }
+  }
+
+  private _paintFood(ctx: CanvasRenderingContext2D): void {
+    ctx.drawImage(this.food.image, this.food.x, this.food.y, this.squareSize, this.squareSize);
+  }
+
+  private _init(): CanvasRenderingContext2D {
+    const ctx = this.getContext("2d")!;
+    ctx.font = "45px Courier";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    this._paintBackground(ctx);
+    this._paintSnake(ctx);
+    this._paintFood(ctx);
+    return ctx;
+  }
+
+  private readonly _steerSnake = (e: KeyboardEvent): void => {
+    this.snake.steer(e.key);
+  };
 }
 
 customElements.define("snake-canvas", SnakeCanvas, { extends: "canvas" });

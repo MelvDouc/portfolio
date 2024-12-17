@@ -1,17 +1,12 @@
-import type SnakeCanvas from "./SnakeCanvas.jsx";
+import Direction from "@/components/SnakeGame/Direction.js";
 import type { Coords } from "@/types.js";
 
 export default class Snake extends Array<Coords> {
-  private readonly canvas: SnakeCanvas;
-  public direction!: "RIGHT" | "LEFT" | "UP" | "DOWN";
+  private direction: Direction = Direction.None;
 
-  constructor(canvas: SnakeCanvas) {
+  constructor(initialXY: number) {
     super();
-    this.canvas = canvas;
-    this[0] = {
-      x: (Math.ceil(canvas.squaresPerLine / 2) - 1) * canvas.squareSize,
-      y: (Math.ceil(canvas.squaresPerLine / 2) - 1) * canvas.squareSize
-    };
+    this[0] = { x: initialXY, y: initialXY };
   }
 
   isCollision(newHead: Coords): boolean {
@@ -19,21 +14,21 @@ export default class Snake extends Array<Coords> {
       && this.some(({ x, y }) => x === newHead.x && y === newHead.y);
   }
 
-  getNewHead(): Coords {
+  getNewHead(canvasWidth: number, squareSize: number): Coords {
     const newHead = { ...this[0] };
 
     switch (this.direction) {
-      case "LEFT":
-        newHead.x = (newHead.x - this.canvas.squareSize + this.canvas.width) % this.canvas.width;
+      case Direction.Left:
+        newHead.x = (newHead.x - squareSize + canvasWidth) % canvasWidth;
         break;
-      case "RIGHT":
-        newHead.x = (newHead.x + this.canvas.squareSize) % this.canvas.width;
+      case Direction.Right:
+        newHead.x = (newHead.x + squareSize) % canvasWidth;
         break;
-      case "UP":
-        newHead.y = (newHead.y - this.canvas.squareSize + this.canvas.width) % this.canvas.width;
+      case Direction.Up:
+        newHead.y = (newHead.y - squareSize + canvasWidth) % canvasWidth;
         break;
-      case "DOWN":
-        newHead.y = (newHead.y + this.canvas.squareSize) % this.canvas.width;
+      case Direction.Down:
+        newHead.y = (newHead.y + squareSize) % canvasWidth;
     }
 
     return newHead;
@@ -42,20 +37,20 @@ export default class Snake extends Array<Coords> {
   steer(key: string): void {
     switch (key) {
       case "ArrowLeft":
-        if (this.direction !== "LEFT" && this.direction !== "RIGHT")
-          this.direction = "LEFT";
+        if (this.direction !== Direction.Left && this.direction !== Direction.Right)
+          this.direction = Direction.Left;
         return;
       case "ArrowRight":
-        if (this.direction !== "LEFT" && this.direction !== "RIGHT")
-          this.direction = "RIGHT";
+        if (this.direction !== Direction.Left && this.direction !== Direction.Right)
+          this.direction = Direction.Right;
         return;
       case "ArrowUp":
-        if (this.direction !== "DOWN" && this.direction !== "UP")
-          this.direction = "UP";
+        if (this.direction !== Direction.Down && this.direction !== Direction.Up)
+          this.direction = Direction.Up;
         return;
       case "ArrowDown":
-        if (this.direction !== "DOWN" && this.direction !== "UP")
-          this.direction = "DOWN";
+        if (this.direction !== Direction.Down && this.direction !== Direction.Up)
+          this.direction = Direction.Down;
     }
   }
 }
