@@ -18,7 +18,7 @@ export default function HomePage(): HTMLElement {
           </p>
           <p>
             <Trl
-              fr="Mon expertise me permet de créer des sites modernes, rapides, extensibles et sur mesure. Que vous cherchiez un design racé et minimaliste ou une appli web complexe et dynamique, les résultats seront de haute qualité. Si vous voulez les services d'un développeur compétent et fiable, vous avez frappé à la bonne porte. Ensemble donnons vie à vos idées !"
+              fr="Mon expertise me permet de créer des sites modernes, rapides, extensibles et sur mesure. Que vous cherchiez un design lisse et minimaliste ou une appli web complexe et dynamique, les résultats seront de haute qualité. Si vous voulez les services d'un développeur compétent et fiable, vous avez frappé à la bonne porte. Ensemble donnons vie à vos idées !"
               en="My expertise allows me to create fast, modern, and scalable websites that are tailored to your needs. Whether you're looking for a sleek and minimalistic design, or a complex and dynamic web application, I will deliver high-quality results. If you're looking for a reliable and competent web dev, you've come to the right place. Together we'll bring your ideas to life!"
             />
           </p>
