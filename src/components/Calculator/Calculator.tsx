@@ -1,6 +1,7 @@
 import { obs } from "reactfree-jsx";
 import SmallComponentWrapper from "@/components/SmallComponentWrapper/SmallComponentWrapper.jsx";
 import classes from "./Calculator.module.scss";
+import { Parser } from "@/components/Calculator/math-parser/index.js";
 
 export default function Calculator() {
   const resultObs = obs("");
@@ -8,10 +9,8 @@ export default function Calculator() {
   const compute = () => {
     const prev = resultObs.value;
     try {
-      resultObs.value = eval(prev) ?? "";
-    } catch {
-      resultObs.value = prev;
-    }
+      resultObs.value = Parser.parse(prev).toString();
+    } catch { }
   };
   const clear = () => resultObs.value = "";
   const del = () => resultObs.value = resultObs.value.slice(0, -1);

@@ -1,7 +1,12 @@
 import { obs } from "reactfree-jsx";
 import type { Language } from "@/types.js";
 
-const languageObs = obs<Language>("fr");
+const LOCAL_STORAGE_KEY = "app_lang";
+const languageObs = obs<Language>((localStorage.getItem(LOCAL_STORAGE_KEY) as Language | null) ?? "fr");
+
+languageObs.subscribe((lang) => {
+  localStorage.setItem(LOCAL_STORAGE_KEY, lang);
+});
 
 export function onLanguageChange(subscription: (lang: Language) => unknown): VoidFunction {
   return languageObs.subscribe(subscription);

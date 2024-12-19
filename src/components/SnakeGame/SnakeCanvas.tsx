@@ -25,16 +25,8 @@ export default class SnakeCanvas extends HTMLCanvasElement {
 
   connectedCallback() {
     const ctx = this._init();
-
-    const start = (e: KeyboardEvent): void => {
-      if (!e.key.startsWith("Arrow")) return;
-      this._steerSnake(e);
-      document.addEventListener("keydown", this._steerSnake);
-      document.removeEventListener("keydown", start);
-      this._playGame(ctx);
-    };
-
-    document.addEventListener("keydown", start);
+    document.addEventListener("keydown", this._steerSnake);
+    this._playGame(ctx);
   }
 
   disconnectedCallback() {

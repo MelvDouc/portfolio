@@ -1,0 +1,60 @@
+$size_border: 24px;
+
+.ControlArrows {
+  width: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+
+  .Row {
+    display: flex;
+    justify-content: space-around;
+    gap: calc(2 * $size_border);
+  }
+}
+
+.ControlArrow {
+  --clr-base: rgb(16, 93, 109, 0.6);
+  --clr-border-solid: var(--clr-base);
+  $border_transparent: $size_border solid transparent;
+  $border_solid: calc($size_border * 1.73) solid var(--clr-border-solid);
+  all: unset;
+  cursor: pointer;
+  width: 0;
+  height: 0;
+  transition: all 200ms ease-in-out;
+
+  &:active {
+    scale: 1.5;
+  }
+
+  &:hover {
+    --clr-border-solid: rgb(199, 240, 216, 0.55);
+    background-color: var(--clr-base);
+  }
+
+  &[data-arrow="ArrowDown"] {
+    border-left: $border_transparent;
+    border-right: $border_transparent;
+    border-top: $border_solid;
+  }
+
+  &[data-arrow="ArrowUp"] {
+    border-left: $border_transparent;
+    border-right: $border_transparent;
+    border-bottom: $border_solid;
+  }
+
+  &[data-arrow="ArrowLeft"] {
+    border-top: $border_transparent;
+    border-bottom: $border_transparent;
+    border-right: $border_solid;
+  }
+
+  &[data-arrow="ArrowRight"] {
+    border-top: $border_transparent;
+    border-bottom: $border_transparent;
+    border-left: $border_solid;
+  }
+}

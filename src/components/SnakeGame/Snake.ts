@@ -1,23 +1,33 @@
-import Direction from "@/components/SnakeGame/Direction.js";
+import Direction, { Arrows } from "@/components/SnakeGame/Direction.js";
 import type { Coords } from "@/types.js";
 
 export default class Snake extends Array<Coords> {
-  private direction: Direction = Direction.None;
+  private _direction: Direction = Direction.None;
 
-  constructor(initialXY: number) {
+  public constructor(initialXY: number) {
     super();
     this[0] = { x: initialXY, y: initialXY };
   }
 
-  isCollision(newHead: Coords): boolean {
+  public isMovingVertically(): boolean {
+    return this._direction === Direction.Up
+      || this._direction === Direction.Down;
+  }
+
+  public isMovingHorizontally(): boolean {
+    return this._direction === Direction.Left
+      || this._direction === Direction.Right;
+  }
+
+  public isCollision(newHead: Coords): boolean {
     return this.length >= 4
       && this.some(({ x, y }) => x === newHead.x && y === newHead.y);
   }
 
-  getNewHead(canvasWidth: number, squareSize: number): Coords {
+  public getNewHead(canvasWidth: number, squareSize: number): Coords {
     const newHead = { ...this[0] };
 
-    switch (this.direction) {
+    switch (this._direction) {
       case Direction.Left:
         newHead.x = (newHead.x - squareSize + canvasWidth) % canvasWidth;
         break;
@@ -34,23 +44,23 @@ export default class Snake extends Array<Coords> {
     return newHead;
   }
 
-  steer(key: string): void {
-    switch (key) {
-      case "ArrowLeft":
-        if (this.direction !== Direction.Left && this.direction !== Direction.Right)
-          this.direction = Direction.Left;
+  public steer(arrow: string): void {
+    switch (arrow) {
+      case Arrows.Left:
+        if (!this.isMovingHorizontally())
+          this._direction = Direction.Left;
         return;
-      case "ArrowRight":
-        if (this.direction !== Direction.Left && this.direction !== Direction.Right)
-          this.direction = Direction.Right;
+      case Arrows.Right:
+        if (!this.isMovingHorizontally())
+          this._direction = Direction.Right;
         return;
-      case "ArrowUp":
-        if (this.direction !== Direction.Down && this.direction !== Direction.Up)
-          this.direction = Direction.Up;
+      case Arrows.Down:
+        if (!this.isMovingVertically())
+          this._direction = Direction.Down;
+      case Arrows.Up:
+        if (!this.isMovingVertically())
+          this._direction = Direction.Up;
         return;
-      case "ArrowDown":
-        if (this.direction !== Direction.Down && this.direction !== Direction.Up)
-          this.direction = Direction.Down;
     }
   }
 }

@@ -1,7 +1,7 @@
 import Dropdown from "@/components/Dropdown/Dropdown.jsx";
 import cssClasses from "./Nav.module.scss";
 import { path } from "@/services/router.service.js";
-import { setLanguage } from "@/services/translations.service.js";
+import { getLanguage, setLanguage } from "@/services/translations.service.js";
 import type { Language } from "@/types.js";
 import Trl from "@/components/Translatable/Trl.jsx";
 import Link from "@/components/Link.jsx";
@@ -10,6 +10,7 @@ export default function Nav() {
   const handleLanguageChange = (e: Event) => {
     setLanguage((e.target as HTMLSelectElement).value as Language);
   };
+  const currentLanguage = getLanguage();
 
   return (
     <nav className={cssClasses.nav}>
@@ -36,8 +37,8 @@ export default function Nav() {
         </li>
         <li>
           <select className={cssClasses.LanguageSelect} onchange={handleLanguageChange}>
-            <option value="fr">FR</option>
-            <option value="en">EN</option>
+            <option value="fr" selected={currentLanguage === "fr"}>FR</option>
+            <option value="en" selected={currentLanguage === "en"}>EN</option>
           </select>
         </li>
       </ul>

@@ -17,10 +17,24 @@
     @include mixins.grid-center;
     text-align: center;
     @include mixins.full-size;
-    font-size: 2rem;
+    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
+    font-size: 1rem;
     color: lime;
     background: rgb(34, 34, 34);
     background: linear-gradient(to right, rgb(34, 34, 34), rgb(62, 62, 62));
+
+    @media only screen and (min-width: vars.$break-point-smallest) {
+      font-size: 1.25rem;
+    }
+
+    @media only screen and (min-width: vars.$break-point-smaller) {
+      font-size: 1.5rem;
+    }
+
+    @media only screen and (min-width: vars.$break-point-small) {
+      font-size: 2rem;
+    }
   }
 }
 
