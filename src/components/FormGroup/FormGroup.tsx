@@ -9,19 +9,51 @@ export default function FormGroup({ type, id, title, name, handleInput, required
   handleInput?: (e: Event) => void;
   required?: boolean;
 }) {
-  const control: HTMLInputElement | HTMLTextAreaElement = (type !== "textarea")
-    ? <input type={type} id={id} required={required} />
-    : <textarea rows={10} id={id} required={required}></textarea>;
-  control.name = name ?? id;
-  if (title)
-    control.title = title;
-  if (handleInput)
-    control.oninput = handleInput;
-
   return (
     <div className={cssClasses.formGroup}>
       <label htmlFor={id}>{labelText}</label>
-      {control}
+      <Control
+        type={type}
+        id={id}
+        name={name ?? id}
+        title={title}
+        required={required}
+        handleInput={handleInput}
+      />
     </div>
   );
 }
+
+function Control({ type, id, name, required, title, handleInput }: {
+  type: FormGroupType;
+  id: string;
+  name: string;
+  title?: string;
+  required?: boolean;
+  handleInput?: (e: Event) => void;
+}) {
+  if (type === "textarea")
+    return (
+      <textarea
+        rows={10}
+        id={id}
+        name={name}
+        required={required}
+        oninput={handleInput ? handleInput : null}
+        title={title ?? ""}
+      ></textarea>
+    );
+
+  return (
+    <input
+      type={type}
+      id={id}
+      name={name}
+      title={title ?? ""}
+      oninput={handleInput ? handleInput : null}
+      required={required}
+    />
+  );
+}
+
+type FormGroupType = "text" | "email" | "password" | "textarea";

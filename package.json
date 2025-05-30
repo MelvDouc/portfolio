@@ -1,5 +1,5 @@
 {
-  "name": "personal-website2",
+  "name": "portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,10 +9,10 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@types/node": "^22.9.3",
-    "reactfree-jsx": "^1.6.3",
-    "sass-embedded": "^1.81.0",
-    "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "@types/node": "^22.15.29",
+    "reactfree-jsx": "^1.9.1",
+    "sass-embedded": "^1.89.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
   }
 }

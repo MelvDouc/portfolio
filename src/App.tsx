@@ -10,7 +10,7 @@ import ResumePage from "@/pages/ResumePage.jsx";
 import { Route, Router } from "@/services/router.service.js";
 import { onLanguageChange } from "@/services/translations.service.js";
 
-export default function App(): DocumentFragment {
+export default function App() {
   onLanguageChange((language) => {
     document.documentElement.lang = language;
   });

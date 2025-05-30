@@ -1,7 +1,7 @@
 import { obs } from "reactfree-jsx";
 import SmallComponentWrapper from "@/components/SmallComponentWrapper/SmallComponentWrapper.jsx";
-import classes from "./Calculator.module.scss";
 import { Parser } from "@/components/Calculator/math-parser/index.js";
+import classes from "./Calculator.module.scss";
 
 export default function Calculator() {
   const resultObs = obs("");

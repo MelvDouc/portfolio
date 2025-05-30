@@ -1,7 +1,7 @@
 import Page from "@/components/Page/Page.jsx";
 import Trl from "@/components/Translatable/Trl.jsx";
 
-export default function HomePage(): HTMLElement {
+export default function HomePage() {
   return (
     <Page
       title="Home"
@@ -28,7 +28,7 @@ export default function HomePage(): HTMLElement {
   );
 }
 
-function HomePageTitle(): HTMLElement {
+function HomePageTitle() {
   return (
     <section>
       <h1><Trl en="A Website Bespoke And Exactly Your Size" fr="Un site sur mesure selon vos besoins" /></h1>

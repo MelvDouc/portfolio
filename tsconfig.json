@@ -8,7 +8,8 @@
     "module": "Node16",
     "strict": true,
     "verbatimModuleSyntax": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
+    "jsxImportSource": "reactfree-jsx",
     "outDir": "dist",
     "baseUrl": "src",
     "paths": {

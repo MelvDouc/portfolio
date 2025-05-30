@@ -1,10 +1,11 @@
 import Dropdown from "@/components/Dropdown/Dropdown.jsx";
-import cssClasses from "./Nav.module.scss";
+import Link from "@/components/Link.jsx";
+import Trl from "@/components/Translatable/Trl.jsx";
 import { path } from "@/services/router.service.js";
 import { getLanguage, setLanguage } from "@/services/translations.service.js";
 import type { Language } from "@/types.js";
-import Trl from "@/components/Translatable/Trl.jsx";
-import Link from "@/components/Link.jsx";
+
+import cssClasses from "./Nav.module.scss";
 
 export default function Nav() {
   const handleLanguageChange = (e: Event) => {
@@ -21,16 +22,23 @@ export default function Nav() {
           </Link>
         </li>
         <li>
-          <Dropdown>
-            <Link href={path("projects")} className={cssClasses.navLink}><Trl en="projects" fr="projets" /></Link>
-            <div className={cssClasses.projectLinks}>
-              <Link href={path("calculator")}><Trl en="Calculator" fr="Calculatrice" /></Link>
-              <Link href={path("connect-4")}><Trl en="Connect 4" fr="Puissance 4" /></Link>
-              <Link href={path("minesweeper")}><Trl en="Minesweeper" fr="Démineur" /></Link>
-              <Link href={path("password-generator")}><Trl en="Password generator" fr="Générateur de mot de passe" /></Link>
-              <Link href={path("snake")}>Snake</Link>
-            </div>
-          </Dropdown>
+          <Dropdown
+            head={
+              <Link href={path("projects")} className={cssClasses.navLink}>
+                <Trl en="projects" fr="projets" />
+              </Link>
+            }
+            body={
+              <div className={cssClasses.projectLinks}>
+                <Link href={path("calculator")}><Trl en="Calculator" fr="Calculatrice" /></Link>
+                <Link href={path("connect-4")}><Trl en="Connect 4" fr="Puissance 4" /></Link>
+                <Link href={path("minesweeper")}><Trl en="Minesweeper" fr="Démineur" /></Link>
+                <Link href={path("password-generator")}><Trl en="Password generator" fr="Générateur de mot de passe" /></Link>
+                <Link href={path("snake")}>Snake</Link>
+              </div>
+            }
+          />
+
         </li>
         <li>
           <Link href={path("cv")} className={cssClasses.navLink}><Trl en="Résumé" fr="CV" /></Link>

@@ -1,10 +1,28 @@
 import NotFoundPage from "@/pages/NotFoundPage.js";
 
+class RouteComponent extends HTMLElement implements IRoute {
+  public readonly page: string;
+  public readonly component: Component;
+
+  public constructor(page: string, component: Component) {
+    super();
+    this.page = page;
+    this.component = component;
+  }
+}
+
+customElements.define("route-component", RouteComponent);
+
 class RouterOutlet extends HTMLElement {
   private static _instance: RouterOutlet;
 
   public static get instance(): RouterOutlet {
     return this._instance;
+  }
+
+  private static getParams(searchStr: string): Record<string, string> {
+    const searchParams = new URLSearchParams(searchStr);
+    return Object.fromEntries([...searchParams]);
   }
 
   private readonly _routes: IRoute[];
@@ -25,37 +43,40 @@ class RouterOutlet extends HTMLElement {
 
   public async navigate(url: string | URL): Promise<void> {
     const urlObject = url instanceof URL ? url : new URL(url);
-    await this._updateUI(urlObject);
+    const params = RouterOutlet.getParams(urlObject.search);
+    await this._updateUI(params);
     history.pushState({}, "", urlObject);
   }
 
-  private _findRoute(searchParams: URLSearchParams): IRoute | null {
-    const page = searchParams.get("page") ?? "";
+  private _findRoute(page: string): IRoute | null {
     return this._routes.find((r) => r.page === page) ?? null;
   }
 
-  private async _updateUI({ searchParams }: URL): Promise<void> {
-    const route = this._findRoute(searchParams);
+  private async _updateUI(params: Record<string, string>): Promise<void> {
+    const route = this._findRoute(params.page ?? "");
     const component = route?.component ?? NotFoundPage;
-    const pageProps = Object.fromEntries([...searchParams]);
-    this.replaceChildren(await component(pageProps));
+    this.replaceChildren(await component(params));
   }
 
   private async _updateCurrentUI(): Promise<void> {
-    await this._updateUI(new URL(location.href));
+    const searchParams = RouterOutlet.getParams(location.search);
+    await this._updateUI(searchParams);
   }
 }
 
 customElements.define("router-outlet", RouterOutlet);
 
 export function Router({ children }: {
-  children?: IRoute[];
+  children: Element[];
 }): RouterOutlet {
-  return new RouterOutlet(children ?? []);
+  const routes = children
+    .flat(Infinity)
+    .filter((item) => item instanceof RouteComponent);
+  return new RouterOutlet(routes);
 }
 
-export function Route(props: IRoute): IRoute {
-  return props;
+export function Route({ page, component }: IRoute): RouteComponent {
+  return new RouteComponent(page, component);
 }
 
 export async function navigate(url: string | URL): Promise<void> {
@@ -66,9 +87,9 @@ export function path(page: string): string {
   return `${location.pathname}?page=${page}`;
 }
 
-type IRoute = {
-  page: string;
-  component: Component;
-};
-
 type Component = (params: object) => Node | Promise<Node>;
+
+interface IRoute {
+  readonly page: string;
+  readonly component: Component;
+}
