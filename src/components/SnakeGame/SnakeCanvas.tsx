@@ -8,22 +8,23 @@ export default class SnakeCanvas extends HTMLCanvasElement {
   private static readonly CLR_NOKIA_TEXT = "#43523D";
 
   public readonly squaresPerLine: number = 15;
-  public readonly squareSize: number;
-  public readonly snake: Snake;
-  public readonly food: Food;
+  public squareSize!: number;
+  public snake!: Snake;
+  public food!: Food;
   public score = 0;
 
   constructor() {
     super();
-    this.width = this.getIdealWidth();
-    this.squareSize = this.width / this.squaresPerLine;
-    this.height = this.width;
-    const initialSnakeXY = (Math.ceil(this.squaresPerLine / 2) - 1) * this.squareSize;
-    this.snake = new Snake(initialSnakeXY);
-    this.food = new Food(this.width, this.squareSize);
   }
 
   connectedCallback() {
+    this.width = this._getIdealSize();
+    this.height = this.width;
+    this.squareSize = this.width / this.squaresPerLine;
+    const initialSnakeXY = (Math.ceil(this.squaresPerLine / 2) - 1) * this.squareSize;
+    this.snake = new Snake(initialSnakeXY);
+    this.food = new Food(this.width, this.squareSize);
+
     const ctx = this._init();
     document.addEventListener("keydown", this._steerSnake);
     this._playGame(ctx);
@@ -33,11 +34,11 @@ export default class SnakeCanvas extends HTMLCanvasElement {
     document.removeEventListener("keydown", this._steerSnake);
   }
 
-  private getIdealWidth(): number {
-    let width = Math.floor(window.innerWidth * 0.8);
-    // get first multiple of `this.squaresPerLine` <= width
-    width -= width % this.squaresPerLine;
-    return Math.min(width, 600);
+  private _getIdealSize(): number {
+    const parent = this.parentElement as HTMLElement;
+    const { height, width } = parent.getBoundingClientRect();
+    const min = Math.min(height, width);
+    return min - min % this.squaresPerLine;
   }
 
   private _playGame(ctx: CanvasRenderingContext2D): void {
