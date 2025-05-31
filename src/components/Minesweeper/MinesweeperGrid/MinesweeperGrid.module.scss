@@ -1,0 +1,14 @@
+.MinesweeperGrid {
+  width: 100%;
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+}
+
+@container grid-container (orientation: landscape) {
+  .MinesweeperGrid {
+    width: initial;
+    height: 100%;
+  }
+}

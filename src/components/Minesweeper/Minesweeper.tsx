@@ -3,7 +3,8 @@ import FlagCounter from "@/components/Minesweeper/FlagCounter/FlagCounter.jsx";
 import MinesweeperActionKind from "@/components/Minesweeper/MinesweeperActionKind.js";
 import MinesweeperCell from "@/components/Minesweeper/MinesweeperCell/MinesweeperCell.jsx";
 import MinesweeperGame from "@/components/Minesweeper/MinesweeperGame.js";
-import SmallComponentWrapper from "@/components/SmallComponentWrapper/SmallComponentWrapper.jsx";
+import MinesweeperGrid from "@/components/Minesweeper/MinesweeperGrid/MinesweeperGrid.js";
+
 import cssClasses from "./Minesweeper.module.scss";
 
 export default function Minesweeper() {
@@ -12,7 +13,9 @@ export default function Minesweeper() {
     width: 10,
     numberOfMines: 20
   });
-  const cells: MinesweeperCell[] = [];
+  const cells = Array.from({ length: game.numberOfCells }, (_, i) => {
+    return new MinesweeperCell(game, i);
+  });
 
   game.onAction((action) => {
     switch (action.kind) {
@@ -50,24 +53,14 @@ export default function Minesweeper() {
   };
 
   return (
-    <SmallComponentWrapper>
-      <div className={cssClasses.Minesweeper}>
-        <article className={cssClasses.MinesweeperGrid}>
-          {Array.from({ length: game.height }, (_, row) => (
-            <section className={cssClasses.MinesweeperRow}>
-              {Array.from({ length: game.width }, (_, col) => {
-                const cell = new MinesweeperCell(game, row * game.width + col);
-                cells.push(cell);
-                return cell;
-              })}
-            </section>
-          ))}
-        </article>
-        <article className={cssClasses.MinesweeperControls}>
-          <FlagCounter initialCount={game.flagCount} onCountChange={onFlagCountChange} />
-          <button className="btn btn-primary" onclick={() => game.reset()}>New Game</button>
-        </article>
-      </div>
-    </SmallComponentWrapper>
+    <div className={cssClasses.Minesweeper}>
+      <section className={cssClasses.Minesweeper__Top}>
+        <MinesweeperGrid cells={cells} />
+      </section>
+      <section className={cssClasses.Minesweeper__Bottom}>
+        <FlagCounter initialCount={game.flagCount} onCountChange={onFlagCountChange} />
+        <button className="btn btn-primary" onclick={() => game.reset()}>New Game</button>
+      </section>
+    </div>
   );
 }
