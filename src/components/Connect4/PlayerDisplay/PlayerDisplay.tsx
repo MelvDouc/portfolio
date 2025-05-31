@@ -1,6 +1,8 @@
 import type Game from "@/components/Connect4/game/Game.js";
 import Player from "@/components/Connect4/game/Player.js";
 
+import cssClasses from "./PlayerDisplay.module.scss";
+
 export default function PlayerDisplay({ game }: {
   game: Game;
 }) {
@@ -21,7 +23,9 @@ export default function PlayerDisplay({ game }: {
   };
 
   return (
-    <div $init={$init}>{playerDiscs[Player.RED]} to move</div>
+    <div className={cssClasses.PlayerDisplay} $init={$init}>
+      {playerDiscs[Player.RED]} to move
+    </div>
   );
 }
 

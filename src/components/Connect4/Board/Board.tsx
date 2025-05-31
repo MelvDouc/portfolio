@@ -1,12 +1,20 @@
 import Cell from "@/components/Connect4/Cell/Cell.js";
-import { BOARD_HEIGHT, BOARD_WIDTH, indexOf } from "@/components/Connect4/game/BoardDimensions.js";
+import {
+  BOARD_HEIGHT,
+  getX,
+  getY,
+  indexOf,
+  NB_CELLS
+} from "@/components/Connect4/game/BoardDimensions.js";
 import type Game from "@/components/Connect4/game/Game.js";
 import cssClasses from "./Board.module.scss";
 
 export default function Board({ game }: {
   game: Game;
 }) {
-  const cells: Cell[] = [];
+  const cells = Array.from({ length: NB_CELLS }, (_, i) => {
+    return new Cell(() => game.play(i));
+  });
   let winningLine: number[] = [];
 
   game.onAction((action) => {
@@ -29,25 +37,11 @@ export default function Board({ game }: {
 
   return (
     <div className={cssClasses.Board}>
-      {Array.from({ length: BOARD_HEIGHT }, (_, y) => (
-        <section className={cssClasses.BoardRow}>
-          {Array.from({ length: BOARD_WIDTH }, (_, x) => (
-            <BoardCell game={game} cells={cells} y={y} x={x} />
-          ))}
-        </section>
-      ))}
+      {Array.from({ length: NB_CELLS }, (_, i) => {
+        const revY = BOARD_HEIGHT - getY(i) - 1;
+        const x = getX(i);
+        return cells[indexOf(revY, x)];
+      })}
     </div>
   );
-}
-
-function BoardCell({ cells, game, x, y }: {
-  cells: Cell[];
-  game: Game;
-  x: number;
-  y: number;
-}): Cell {
-  const index = indexOf(y, x);
-  const cell = new Cell(() => game.play(index));
-  cells.push(cell);
-  return cell;
 }

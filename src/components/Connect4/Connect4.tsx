@@ -1,22 +1,22 @@
 import Board from "@/components/Connect4/Board/Board.jsx";
-import cssClasses from "@/components/Connect4/Connect4.module.scss";
+import Connect4Controls from "@/components/Connect4/Connect4Controls/Connect4Controls.js";
 import Game from "@/components/Connect4/game/Game.js";
 import PlayerDisplay from "@/components/Connect4/PlayerDisplay/PlayerDisplay.jsx";
-import SmallComponentWrapper from "@/components/SmallComponentWrapper/SmallComponentWrapper.jsx";
+
+import cssClasses from "./Connect4.module.scss";
 
 export default function Connect4() {
   const game = new Game();
 
   return (
-    <SmallComponentWrapper>
-      <div className={cssClasses.Connect4}>
-        <PlayerDisplay game={game} />
+    <div className={cssClasses.Connect4}>
+      <section className={cssClasses.Connect4__Top}>
         <Board game={game} />
-        <div className={cssClasses.Connect4Buttons}>
-          <button className="btn btn-primary" onclick={() => game.undoLastMove()}>Undo</button>
-          <button className="btn btn-primary" onclick={() => game.restart()}>New Game</button>
-        </div>
-      </div>
-    </SmallComponentWrapper>
+      </section>
+      <section className={cssClasses.Connect4__Bottom}>
+        <PlayerDisplay game={game} />
+        <Connect4Controls game={game} />
+      </section>
+    </div>
   );
 }

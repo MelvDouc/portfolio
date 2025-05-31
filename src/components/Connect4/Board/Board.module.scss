@@ -1,11 +1,14 @@
 .Board {
   width: 100%;
-  display: flex;
-  flex-flow: column-reverse nowrap;
+  aspect-ratio: 7 / 6;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
 }
 
-.BoardRow {
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+@container board-container (min-aspect-ratio: 7 / 6) {
+  .Board {
+    width: unset;
+    height: 100%;
+  }
 }
