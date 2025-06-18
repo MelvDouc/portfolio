@@ -1,8 +1,9 @@
+import type { ComponentChild } from "reactfree-jsx";
 import cssClasses from "./ResumeDate.module.scss";
 
 export default function ResumeDate({ value }: {
-  value: string | number;
-}): HTMLElement {
+  value: ComponentChild;
+}) {
   return (
     <span className={cssClasses.ResumeDate}>{value}</span>
   );

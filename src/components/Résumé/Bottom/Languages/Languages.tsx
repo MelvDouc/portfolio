@@ -2,7 +2,7 @@ import ResumeList from "@/components/Résumé/Bottom/RésuméList/ResumeList.jsx
 import Trl from "@/components/Translatable/Trl.jsx";
 import cssClasses from "./Languages.module.scss";
 
-export default function Languages(): HTMLElement {
+export default function Languages() {
   return (
     <article className={cssClasses.Languages}>
       <h3><Trl fr="Langues" en="Languages" /></h3>

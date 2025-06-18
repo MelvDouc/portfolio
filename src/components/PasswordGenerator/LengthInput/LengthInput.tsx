@@ -6,7 +6,7 @@ export default function LengthInput({ type, initialLength, onLengthChange, emitL
   initialLength: number;
   onLengthChange: (cb: (len: number) => unknown) => void;
   emitLengthChange: (len: number) => void;
-}): HTMLElement {
+}) {
   const $init = (element: HTMLInputElement) => {
     element.addEventListener("input", () => {
       const len = element.valueAsNumber;

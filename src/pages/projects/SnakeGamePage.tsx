@@ -1,6 +1,6 @@
 import SnakeGame from "@/components/SnakeGame/SnakeGame.jsx";
 
-export default function SnakeGamePage(): Element {
+export default function SnakeGamePage() {
   return (
     <SnakeGame />
   );
