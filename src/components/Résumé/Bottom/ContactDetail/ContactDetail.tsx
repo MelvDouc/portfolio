@@ -3,7 +3,7 @@ import githubLogo from "@/assets/github-logo.png";
 import Trl from "@/components/Translatable/Trl.jsx";
 import cssClasses from "./ContactDetail.module.scss";
 
-export default function ContactDetail(): HTMLElement {
+export default function ContactDetail() {
   return (
     <article className={cssClasses.ContactDetail}>
       <h3><Trl fr="Coordonnées" en="Contact Detail" /></h3>
@@ -28,4 +28,4 @@ export default function ContactDetail(): HTMLElement {
   );
 }
 
-const website = "https://melvdouc.github.io/static-website/";
+const website = "https://melvdouc.github.io/portfolio/";

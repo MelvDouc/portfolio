@@ -1,7 +1,7 @@
 import Trl from "@/components/Translatable/Trl.jsx";
 import cssClasses from "./Skills.module.scss";
 
-export default function Skills(): HTMLElement {
+export default function Skills() {
   return (
     <article className={cssClasses.Skills}>
       <h3><Trl fr="Compétences" en="Skills" /></h3>
@@ -31,7 +31,7 @@ export default function Skills(): HTMLElement {
 
 function Circle({ filled }: {
   filled: boolean;
-}): HTMLElement {
+}) {
   return (
     <span className={{
       [cssClasses.Circle]: true,
@@ -42,7 +42,7 @@ function Circle({ filled }: {
 
 function Circles({ rating }: {
   rating: number;
-}): HTMLElement {
+}) {
 
   return (
     <div className={cssClasses.Circles}>
@@ -56,7 +56,7 @@ function Circles({ rating }: {
 function SkillListItem({ skill, rating }: {
   skill: string;
   rating: number;
-}): HTMLElement {
+}) {
   return (
     <li><Circles rating={rating} />{skill}</li>
   );

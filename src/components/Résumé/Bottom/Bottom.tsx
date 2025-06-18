@@ -8,7 +8,7 @@ import Exp from "@/components/Résumé/Bottom/Exp/Exp.jsx";
 import Training from "@/components/Résumé/Bottom/Training/Training.jsx";
 import Languages from "@/components/Résumé/Bottom/Languages/Languages.jsx";
 
-export default function Bottom(): HTMLElement {
+export default function Bottom() {
   return (
     <section className={cssClasses.Bottom}>
       <PicContainer />

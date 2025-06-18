@@ -1,9 +1,10 @@
+import type { ComponentChild } from "reactfree-jsx";
 import cssClasses from "./ResumeList.module.scss";
 
 function ResumeList({ col2, children }: {
   col2?: boolean;
-  children?: any;
-}): HTMLElement {
+  children?: ComponentChild;
+}) {
   return (
     <ul
       className={{

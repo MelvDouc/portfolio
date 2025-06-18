@@ -7,7 +7,7 @@ export default function Checkbox({ charOption, checked, emitToggle }: {
   charOption: CharOption;
   checked: boolean;
   emitToggle: VoidFunction;
-}): HTMLElement {
+}) {
   const id = `checkbox-${charOption}`;
 
   return (

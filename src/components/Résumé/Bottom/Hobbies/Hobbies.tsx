@@ -2,7 +2,7 @@ import ResumeList from "@/components/Résumé/Bottom/RésuméList/ResumeList.jsx
 import Trl from "@/components/Translatable/Trl.jsx";
 import cssClasses from "./Hobbies.module.scss";
 
-export default function Hobbies(): HTMLElement {
+export default function Hobbies() {
   return (
     <article className={cssClasses.Hobbies}>
       <h3><Trl fr="Loisirs" en="Hobbies" /></h3>

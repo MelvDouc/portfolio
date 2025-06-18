@@ -1,18 +1,18 @@
 import { Arrows, type Arrow } from "@/components/SnakeGame/Direction.js";
 import cssClasses from "./ControlArrows.module.scss";
 
-export default function ControlArrows(): HTMLElement {
+export default function ControlArrows() {
   return (
     <div className={cssClasses.ControlArrows}>
       <section className={cssClasses.Row}>
-        <ControlArrow arrow={Arrows.Up}>⬆️</ControlArrow>
+        <ControlArrow arrow={Arrows.Up} />
       </section>
       <section className={cssClasses.Row}>
-        <ControlArrow arrow={Arrows.Left}>⬅️</ControlArrow>
-        <ControlArrow arrow={Arrows.Right}>➡️</ControlArrow>
+        <ControlArrow arrow={Arrows.Left} />
+        <ControlArrow arrow={Arrows.Right} />
       </section>
       <section className={cssClasses.Row}>
-        <ControlArrow arrow={Arrows.Down}>⬇️</ControlArrow>
+        <ControlArrow arrow={Arrows.Down} />
       </section>
     </div>
   );
@@ -20,7 +20,7 @@ export default function ControlArrows(): HTMLElement {
 
 function ControlArrow({ arrow }: {
   arrow: Arrow;
-}): HTMLElement {
+}) {
   const event = new KeyboardEvent("keydown", { key: arrow });
   const handleClick = () => {
     document.dispatchEvent(event);

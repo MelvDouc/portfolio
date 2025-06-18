@@ -6,7 +6,7 @@ export default function Page({ center, title, inPageTitle, children }: {
   title: string;
   inPageTitle?: string | Element;
   children?: ComponentChild;
-}): Element {
+}) {
   document.title = `${title} | Melvin Doucet's website`;
   inPageTitle ??= title;
 

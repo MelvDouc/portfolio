@@ -6,7 +6,7 @@ import Trl from "@/components/Translatable/Trl.jsx";
 import TypedEventEmitter from "@/utils/TypedEventEmitter.js";
 import cssClasses from "./PasswordGenerator.module.scss";
 
-export default function PasswordGenerator(): HTMLElement {
+export default function PasswordGenerator() {
   const eventEmitter = new TypedEventEmitter<{
     lengthChange: [number];
     charOptionToggled: [CharOption];
