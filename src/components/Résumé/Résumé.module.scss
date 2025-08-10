@@ -10,6 +10,11 @@ $gradient1: linear-gradient(to right, $clr1, hsl($hue1, 99%, 30%));
   flex-direction: column;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 
+  @media print {
+    height: 100vh;
+    justify-content: space-between;
+  }
+
   h1,
   h2,
   h3 {

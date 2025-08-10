@@ -20,7 +20,7 @@ export default function ContactDetail() {
         <dd>
           <address>
             <p>43 rue de l'ancien hôpital</p>
-            <p>57100 Thionville - France</p>
+            <p>57100 Thionville &mdash; France</p>
           </address>
         </dd>
       </dl>

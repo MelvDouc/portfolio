@@ -1,7 +1,7 @@
 
+import ResumeBottom from "@/components/Résumé/Bottom/Bottom.jsx";
 import Trl from "@/components/Translatable/Trl.jsx";
 import cssClasses from "./Résumé.module.scss";
-import ResumeBottom from "@/components/Résumé/Bottom/Bottom.jsx";
 
 export default function Resume() {
   return (

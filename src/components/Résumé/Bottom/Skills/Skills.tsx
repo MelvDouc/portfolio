@@ -11,45 +11,23 @@ export default function Skills() {
         <SkillListItem skill="Sass" rating={5} />
         <SkillListItem skill="UI & UX" rating={3} />
         <SkillListItem skill="Figma" rating={2} />
-        <SkillListItem skill="React" rating={3} />
+        <SkillListItem skill="React" rating={3.5} />
         <SkillListItem skill="Angular" rating={2} />
         <SkillListItem skill="Vue" rating={2} />
-        <SkillListItem skill="Node" rating={4} />
-        <SkillListItem skill="NPM" rating={4} />
+        <SkillListItem skill="Node" rating={4.5} />
+        <SkillListItem skill="NPM" rating={4.5} />
         <SkillListItem skill="Express" rating={4} />
-        <SkillListItem skill="Symfony" rating={1} />
-        <SkillListItem skill="Spring Boot" rating={2} />
-        <SkillListItem skill="Django" rating={1} />
-        <SkillListItem skill="Docker" rating={1} />
-        <SkillListItem skill="MySQL" rating={4} />
+        <SkillListItem skill="Symfony" rating={2} />
+        <SkillListItem skill="Spring Boot" rating={1.5} />
+        <SkillListItem skill="Python" rating={4.5} />
+        <SkillListItem skill="Django" rating={3.5} />
+        <SkillListItem skill="AI" rating={4} />
+        <SkillListItem skill="Docker" rating={3.5} />
+        <SkillListItem skill="SQL" rating={4.5} />
         <SkillListItem skill="MongoDB" rating={4} />
-        <SkillListItem skill="Git" rating={4} />
+        <SkillListItem skill="Git" rating={3} />
       </ul>
     </article>
-  );
-}
-
-function Circle({ filled }: {
-  filled: boolean;
-}) {
-  return (
-    <span className={{
-      [cssClasses.Circle]: true,
-      [cssClasses.CircleFilled]: filled
-    }}></span>
-  );
-}
-
-function Circles({ rating }: {
-  rating: number;
-}) {
-
-  return (
-    <div className={cssClasses.Circles}>
-      {Array.from({ length: 5 }, (_, i) => (
-        <Circle filled={i + 1 <= rating} />
-      ))}
-    </div>
   );
 }
 
@@ -58,6 +36,27 @@ function SkillListItem({ skill, rating }: {
   rating: number;
 }) {
   return (
-    <li><Circles rating={rating} />{skill}</li>
+    <li title={`${skill}: ${rating}/5`}><Circles rating={rating} />{skill}</li>
   );
+}
+
+function Circles({ rating }: {
+  rating: number;
+}) {
+  return (
+    <div className={cssClasses.Circles} data-rating={rating}>
+      {Array.from({ length: 5 }, (_, i) => (
+        <span className={cssClasses.Circle} data-filled={getCircledFilled(rating, i)}></span>
+      ))}
+    </div>
+  );
+}
+
+
+function getCircledFilled(rating: number, index: number): string {
+  const diff = (index + 1) - rating;
+
+  return diff === 0.5 ? "half"
+    : diff <= 0 ? "filled"
+      : "empty";
 }

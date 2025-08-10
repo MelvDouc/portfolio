@@ -36,7 +36,8 @@ $gradient1: linear-gradient(to right, $clr1, hsl($hue1, 99%, 30%));
 
   @media print {
     display: grid;
-    gap: $main-gap;
+    padding: 2px;
+    gap: 2px;
     grid-template-areas:
       "p c c c c c"
       "s s t t t t"

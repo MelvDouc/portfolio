@@ -27,18 +27,22 @@
 
   .Circle {
     --size: 1em;
-    display: inline-block;
+    display: block;
     width: var(--size);
     height: var(--size);
     border-radius: 50%;
-    background-color: lightgray;
+    background: lightgray;
+
+    &[data-filled="filled"] {
+      background: vars.$clr_green_light;
+    }
+
+    &[data-filled="half"] {
+      background: linear-gradient(to right, vars.$clr_green_light 50%, lightgray 0);
+    }
 
     @media print {
       --size: 0.85em;
-    }
-
-    &.CircleFilled {
-      background-color: vars.$clr_green_light;
     }
   }
 }
