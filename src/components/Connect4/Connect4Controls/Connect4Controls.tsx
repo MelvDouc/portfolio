@@ -6,8 +6,8 @@ export default function Connect4Controls({ game }: {
 }) {
   return (
     <div className={cssClasses.Connect4Controls}>
-      <button className="btn btn-primary" onclick={() => game.undoLastMove()}>Undo</button>
-      <button className="btn btn-primary" onclick={() => game.restart()}>New Game</button>
+      <button className="btn btn-primary" on:click={() => game.undoLastMove()}>Undo</button>
+      <button className="btn btn-primary" on:click={() => game.restart()}>New Game</button>
     </div>
   );
 }

@@ -80,10 +80,10 @@ export default function PasswordGenerator() {
           ))}
         </article>
         <article className={cssClasses.Controls}>
-          <button className="btn btn-primary" onclick={emitUpdateRequest}>
+          <button className="btn btn-primary" on:click={emitUpdateRequest}>
             <Trl fr="Nouveau" en="New password" />
           </button>
-          <button className="btn btn-primary" onclick={emitCopyRequest}>
+          <button className="btn btn-primary" on:click={emitCopyRequest}>
             <Trl fr="Copier" en="Copy password" />
           </button>
         </article>

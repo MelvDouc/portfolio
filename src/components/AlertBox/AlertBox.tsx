@@ -39,7 +39,7 @@ export default class AlertBox extends HTMLElement {
             "btn-danger": type === "danger",
           }}
           type="button"
-          onclick={quit}
+          on:click={quit}
         >OK</button>
       </div>
     );

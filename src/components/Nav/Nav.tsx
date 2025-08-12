@@ -44,7 +44,7 @@ export default function Nav() {
           <Link href={path("cv")} className={cssClasses.navLink}><Trl en="Résumé" fr="CV" /></Link>
         </li>
         <li>
-          <select className={cssClasses.LanguageSelect} onchange={handleLanguageChange}>
+          <select className={cssClasses.LanguageSelect} on:change={handleLanguageChange}>
             <option value="fr" selected={currentLanguage === "fr"}>FR</option>
             <option value="en" selected={currentLanguage === "en"}>EN</option>
           </select>

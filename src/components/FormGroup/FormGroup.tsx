@@ -39,7 +39,7 @@ function Control({ type, id, name, required, title, handleInput }: {
         id={id}
         name={name}
         required={required}
-        oninput={handleInput ? handleInput : null}
+        on:input={handleInput ? handleInput : null}
         title={title ?? ""}
       ></textarea>
     );
@@ -50,7 +50,7 @@ function Control({ type, id, name, required, title, handleInput }: {
       id={id}
       name={name}
       title={title ?? ""}
-      oninput={handleInput ? handleInput : null}
+      on:input={handleInput ? handleInput : null}
       required={required}
     />
   );

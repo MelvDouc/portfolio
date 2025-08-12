@@ -30,7 +30,7 @@ function ControlArrow({ arrow }: {
     <button
       className={cssClasses.ControlArrow}
       data-arrow={arrow}
-      onclick={handleClick}
+      on:click={handleClick}
     ></button>
   );
 }

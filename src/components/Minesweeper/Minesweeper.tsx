@@ -59,7 +59,7 @@ export default function Minesweeper() {
       </section>
       <section className={cssClasses.Minesweeper__Bottom}>
         <FlagCounter initialCount={game.flagCount} onCountChange={onFlagCountChange} />
-        <button className="btn btn-primary" onclick={() => game.reset()}>New Game</button>
+        <button className="btn btn-primary" on:click={() => game.reset()}>New Game</button>
       </section>
     </div>
   );
