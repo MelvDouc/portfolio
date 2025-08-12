@@ -11,7 +11,6 @@ export default class TranslatableElement extends HTMLElement {
 
   connectedCallback(): void {
     const unsubscribe = onLanguageChange((lang) => {
-      console.log(lang);
       if (lang in this._translations)
         this.innerText = this._translations[lang];
     });
