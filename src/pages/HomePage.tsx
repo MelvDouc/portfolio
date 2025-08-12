@@ -33,5 +33,5 @@ function HomePageTitle() {
     <section>
       <h1><Trl en="A Website Bespoke And Exactly Your Size" fr="Un site sur mesure selon vos besoins" /></h1>
     </section>
-  );
+  ) as HTMLElement;
 }

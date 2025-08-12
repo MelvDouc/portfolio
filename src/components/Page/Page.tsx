@@ -31,5 +31,5 @@ function PageTitle({ title }: {
       <h1>{title}</h1>
     );
 
-  return title;
+  return (<>{title}</>);
 }
