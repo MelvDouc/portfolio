@@ -10,8 +10,7 @@ export default function Languages() {
         <li><Trl fr="français natif" en="native French" /></li>
         <li><Trl fr="anglais courant" en="proficient English" /></li>
         <li><Trl fr="allemand correct" en="decent German" /></li>
-        <li><Trl fr="japonais basique" en="basic Japanese" /></li>
-        <li><Trl fr="chinois mandarin basique" en="basic Mandarin Chinese" /></li>
+        <li><Trl fr="japonais et mandarin basique" en="basic Japanese & Mandarin" /></li>
       </ResumeList>
     </article>
   );

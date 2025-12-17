@@ -10,19 +10,18 @@ export default function Skills() {
         <SkillListItem skill="CSS" rating={4} />
         <SkillListItem skill="Sass" rating={5} />
         <SkillListItem skill="UI & UX" rating={3} />
-        <SkillListItem skill="Figma" rating={2} />
+        <SkillListItem skill="Figma" rating={3} />
         <SkillListItem skill="React" rating={3.5} />
         <SkillListItem skill="Angular" rating={2} />
-        <SkillListItem skill="Vue" rating={2} />
         <SkillListItem skill="Node" rating={4.5} />
         <SkillListItem skill="NPM" rating={4.5} />
         <SkillListItem skill="Express" rating={4} />
         <SkillListItem skill="Symfony" rating={2} />
         <SkillListItem skill="Spring Boot" rating={1.5} />
         <SkillListItem skill="Python" rating={4.5} />
+        <SkillListItem skill="Machine learning" rating={4} small />
         <SkillListItem skill="Django" rating={3.5} />
-        <SkillListItem skill="AI" rating={4} />
-        <SkillListItem skill="Docker" rating={3.5} />
+        <SkillListItem skill="Docker" rating={4} />
         <SkillListItem skill="SQL" rating={4.5} />
         <SkillListItem skill="MongoDB" rating={4} />
         <SkillListItem skill="Git" rating={3} />
@@ -31,12 +30,13 @@ export default function Skills() {
   );
 }
 
-function SkillListItem({ skill, rating }: {
+function SkillListItem({ skill, rating, small = false }: {
   skill: string;
   rating: number;
+  small?: boolean;
 }) {
   return (
-    <li title={`${skill}: ${rating}/5`}><Circles rating={rating} />{skill}</li>
+    <li title={`${skill}: ${rating}/5`}><Circles rating={rating} /><span className={{ [cssClasses.small]: small }}>{skill}</span></li>
   );
 }
 

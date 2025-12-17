@@ -3,11 +3,12 @@ import Trl from "@/components/Translatable/Trl.jsx";
 import cssClasses from "./Exp.module.scss";
 import ResumeDate from "@/components/Résumé/Bottom/RésuméDate/ResumeDate.jsx";
 
-export default function Exp(): HTMLElement {
+export default function Exp() {
   return (
     <article className={cssClasses.Exp}>
       <h3><Trl fr="Expérience" en="Experience" /></h3>
       <ResumeList>
+        <li><ResumeDate value="2025" /> <Trl fr="Stage dev Modelias" en="Dev internship with Modelias" /></li>
         <li>
           <div><ResumeDate value="2022-2023" /> <Trl fr="Développeur web full-stack" en="Full-stack web developer" /></div>
           <ul>

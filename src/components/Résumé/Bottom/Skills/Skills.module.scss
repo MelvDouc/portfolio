@@ -7,11 +7,19 @@
 
 .SkillList {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  @include mixins.gap(1);
 
   li {
     display: flex;
+    align-items: center;
     flex-flow: row wrap;
     @include mixins.gap(2);
+
+    .small {
+      @include mixins.fs(3);
+    }
   }
 
   @media only screen and (min-width: vars.$break-point-smaller) {

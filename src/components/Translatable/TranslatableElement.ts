@@ -1,18 +1,18 @@
 import { getLanguage, onLanguageChange } from "@/services/translations.service.js";
 
 export default class TranslatableElement extends HTMLElement {
-  private readonly _translations: Record<string, string>;
+  private readonly _translations: Record<string, string | Node>;
 
-  constructor(translations: Record<string, string>) {
+  constructor(translations: Record<string, string | Node>) {
     super();
     this._translations = translations;
-    this.innerText = this._translations[getLanguage()];
+    this.replaceChildren(this._translations[getLanguage()]);
   }
 
   connectedCallback(): void {
     const unsubscribe = onLanguageChange((lang) => {
       if (lang in this._translations)
-        this.innerText = this._translations[lang];
+        this.replaceChildren(this._translations[lang]);
     });
     this.addEventListener("trl-disconnect", unsubscribe);
   }
