@@ -1,0 +1,21 @@
+@use "@/styles/mixins" as mixins;
+
+.AlertBox {
+  width: min(50%, 400px);
+  border: 0;
+  border-radius: 10px;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 1em;
+  gap: 1em;
+  box-shadow: 2px 2px 12px 0px lightgray;
+  background-color: rgb(238, 255, 253);
+
+  &::backdrop {
+    background-color: rgb(5, 80, 5, 0.6);
+  }
+}

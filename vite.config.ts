@@ -1,12 +1,10 @@
 import { join } from "path";
 import { defineConfig } from "vite";
 
-const root = process.cwd();
-
 export default defineConfig({
   resolve: {
     alias: {
-      "@": join(root, "src")
+      "@": join(import.meta.dirname, "src")
     }
   },
   css: {

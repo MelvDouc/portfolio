@@ -5,7 +5,9 @@ export default function HomePage() {
   return (
     <Page
       title="Home"
-      inPageTitle={<HomePageTitle />}
+      inPageTitle={(
+        <Trl en="A Website Bespoke And Exactly Your Size" fr="Un site sur mesure selon vos besoins" />
+      )}
       center
     >
       <section className="fs-5">
@@ -26,12 +28,4 @@ export default function HomePage() {
       </section>
     </Page>
   );
-}
-
-function HomePageTitle() {
-  return (
-    <section>
-      <h1><Trl en="A Website Bespoke And Exactly Your Size" fr="Un site sur mesure selon vos besoins" /></h1>
-    </section>
-  ) as HTMLElement;
 }

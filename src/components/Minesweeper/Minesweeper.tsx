@@ -1,4 +1,4 @@
-import AlertBox from "@/components/AlertBox/AlertBox.jsx";
+import { showAlertBox } from "@/components/AlertBox/AlertBox.jsx";
 import FlagCounter from "@/components/Minesweeper/FlagCounter/FlagCounter.jsx";
 import MinesweeperActionKind from "@/components/Minesweeper/MinesweeperActionKind.js";
 import MinesweeperCell from "@/components/Minesweeper/MinesweeperCell/MinesweeperCell.jsx";
@@ -27,13 +27,13 @@ export default function Minesweeper() {
         cells[action.index].setFlagged(action.isFlagged);
         break;
       case MinesweeperActionKind.GameWin:
-        AlertBox.create({ message: "You win!", type: "primary" });
+        showAlertBox({ message: "You win!", type: "primary" });
         break;
       case MinesweeperActionKind.GameLoss:
         action.minedCellIndices.forEach((index) => {
           cells[index].setMined(true);
         });
-        AlertBox.create({ message: "Boom!", type: "danger" });
+        showAlertBox({ message: "Boom!", type: "danger" });
         break;
       case MinesweeperActionKind.NewGame:
         cells.forEach((cell) => cell.reset());

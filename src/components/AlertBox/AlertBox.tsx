@@ -1,53 +1,40 @@
-import "./AlertBox.scss";
+import cssClasses from "./AlertBox.module.scss";
 
-export default class AlertBox extends HTMLElement {
-  static create(props: {
-    message: string | Node;
-    type?: ButtonColor;
-    /**
-     * Will run after the element has been removed.
-     */
-    handleClose?: VoidFunction;
-  }) {
-    document.body.prepend(
-      new AlertBox(props)
-    );
-  }
+function AlertBox({ message, type, handleClose }: AlertBoxProps) {
+  const quit = () => {
+    dialog.close();
+    dialog.remove();
+    handleClose?.();
+  };
 
-  constructor({ message, type, handleClose }: Parameters<typeof AlertBox["create"]>[0]) {
-    super();
+  let dialog: HTMLDialogElement;
 
-    const quit = () => {
-      this.remove();
-      handleClose && handleClose();
-    };
-
-    const handleEnter = (e: KeyboardEvent) => {
-      if (e.key !== "Enter") return;
-      e.preventDefault();
-      quit();
-      document.removeEventListener("keydown", handleEnter);
-    };
-
-    this.append(
-      <div className="alert-box__main">
-        <p>{message}</p>
-        <button
-          className={{
-            btn: true,
-            "btn-primary": !type || type === "primary",
-            "btn-danger": type === "danger",
-          }}
-          type="button"
-          on:click={quit}
-        >OK</button>
-      </div>
-    );
-    document.addEventListener("keydown", handleEnter);
-  }
+  return dialog = (
+    <dialog className={cssClasses.AlertBox}>
+      <p>{message}</p>
+      <button
+        className={{
+          "btn": true,
+          "btn-primary": type === "primary",
+          "btn-danger": type === "danger"
+        }}
+        on:click={quit}
+        autofocus
+      >OK</button>
+    </dialog>
+  ) as HTMLDialogElement;
 }
 
-customElements.define("alert-box", AlertBox);
-
+export function showAlertBox(props: AlertBoxProps) {
+  const alertBox = AlertBox(props);
+  document.body.prepend(alertBox);
+  alertBox.showModal();
+}
 
 type ButtonColor = "primary" | "danger";
+
+type AlertBoxProps = {
+  message: string | Node;
+  type: ButtonColor;
+  handleClose?: () => unknown;
+};

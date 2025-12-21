@@ -1,4 +1,4 @@
-import AlertBox from "@/components/AlertBox/AlertBox.jsx";
+import { showAlertBox } from "@/components/AlertBox/AlertBox.jsx";
 import Checkbox from "@/components/PasswordGenerator/Checkbox/Checkbox.jsx";
 import LengthInput from "@/components/PasswordGenerator/LengthInput/LengthInput.jsx";
 import { CHAR_OPTIONS, createPassword, type CharOption } from "@/components/PasswordGenerator/state.js";
@@ -95,20 +95,21 @@ export default function PasswordGenerator() {
 async function copyPasswordToClipboard(password: string) {
   try {
     await navigator.clipboard.writeText(password);
-    AlertBox.create({
+    showAlertBox({
+      type: "primary",
       message: (
         <Trl fr="Mot de passe copié !" en="Password was copied!" />
       )
     });
   } catch (error) {
-    AlertBox.create({
+    showAlertBox({
+      type: "danger",
       message: (
         <Trl
           fr="Votre navigateur n'autorise pas à interagir avec le presse-papier."
           en="Interacting with the clipboard is disallowed on this browser."
         />
-      ),
-      type: "danger"
+      )
     });
   }
 }

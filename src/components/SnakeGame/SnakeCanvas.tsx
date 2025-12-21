@@ -1,4 +1,4 @@
-import AlertBox from "@/components/AlertBox/AlertBox.jsx";
+import { showAlertBox } from "@/components/AlertBox/AlertBox.jsx";
 import Food from "@/components/SnakeGame/Food.jsx";
 import Snake from "@/components/SnakeGame/Snake.js";
 import { setIntervalOnAnimationFrame } from "@/services/animations.service.js";
@@ -45,9 +45,7 @@ export default class SnakeCanvas extends HTMLCanvasElement {
     const abortController = new AbortController();
 
     abortController.signal.addEventListener("abort", () => {
-      AlertBox.create({
-        message: "The snake swallowed its own tail!"
-      });
+      showAlertBox({ type: "primary", message: "The snake swallowed its own tail!" });
     });
 
     setIntervalOnAnimationFrame(() => {

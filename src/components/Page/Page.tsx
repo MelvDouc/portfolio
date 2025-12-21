@@ -4,7 +4,7 @@ import cssClasses from "./Page.module.scss";
 export default function Page({ center, title, inPageTitle, children }: {
   center?: boolean;
   title: string;
-  inPageTitle?: string | Element;
+  inPageTitle?: string | Node;
   children?: ComponentChild;
 }) {
   document.title = `${title} | Melvin Doucet's website`;
@@ -17,19 +17,8 @@ export default function Page({ center, title, inPageTitle, children }: {
         [cssClasses.Center]: !!center
       }}
     >
-      <PageTitle title={inPageTitle ?? title} />
+      <h1>{inPageTitle ?? title}</h1>
       {children}
     </div>
   );
-}
-
-function PageTitle({ title }: {
-  title: string | Element;
-}) {
-  if (typeof title === "string")
-    return (
-      <h1>{title}</h1>
-    );
-
-  return (<>{title}</>);
 }
