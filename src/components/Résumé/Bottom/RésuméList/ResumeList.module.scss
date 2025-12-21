@@ -27,11 +27,4 @@
       margin-left: calc(var(--gap) * 4);
     }
   }
-
-  @media screen and (min-width: vars.$break-point-medium) {
-    &.Col2 {
-      display: block;
-      column-count: 2;
-    }
-  }
 }

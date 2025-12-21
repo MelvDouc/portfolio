@@ -19,7 +19,7 @@ export default function Skills() {
         <SkillListItem skill="Symfony" rating={2} />
         <SkillListItem skill="Spring Boot" rating={1.5} />
         <SkillListItem skill="Python" rating={4.5} />
-        <SkillListItem skill="Machine learning" rating={4} small />
+        <SkillListItem skill="Machine learning" rating={4} />
         <SkillListItem skill="Django" rating={3.5} />
         <SkillListItem skill="Docker" rating={4} />
         <SkillListItem skill="SQL" rating={4.5} />
@@ -30,13 +30,15 @@ export default function Skills() {
   );
 }
 
-function SkillListItem({ skill, rating, small = false }: {
+function SkillListItem({ skill, rating }: {
   skill: string;
   rating: number;
-  small?: boolean;
 }) {
   return (
-    <li title={`${skill}: ${rating}/5`}><Circles rating={rating} /><span className={{ [cssClasses.small]: small }}>{skill}</span></li>
+    <li title={`${skill}: ${rating}/5`}>
+      <Circles rating={rating} />
+      <span>{skill}</span>
+    </li>
   );
 }
 

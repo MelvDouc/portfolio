@@ -9,8 +9,9 @@ export default function Training() {
       <h3><Trl fr="Formation" en="Training" /></h3>
       <ResumeList col2>
         <li>
-          <ResumeDate value={<Trl en="2025-now" fr="2025" />} />
-          <Trl en={<>AI developer <strong>Bachelor's</strong></>}
+          <ResumeDate value="2025" />
+          <Trl
+            en={<>AI developer <strong>Bachelor's</strong></>}
             fr={<><strong>Bac+3</strong> Concepteur-développeur IA</>}
           />
           <ul>
@@ -20,8 +21,8 @@ export default function Training() {
         <li>
           <ResumeDate value="2020-2021" />
           <Trl
+            en={<>Web Dev Bachelor's equivalency</>}
             fr={<><strong>Titre professionnel</strong> développeur web + web mobile</>}
-            en={<>Web Development Bachelor's equivalency</>}
           />
           <ul>
             <li><Trl fr="école WebForce3 Strasbourg" en="WebForce3 School, Strasbourg" /></li>
@@ -29,7 +30,7 @@ export default function Training() {
         </li>
         <li>
           <ResumeDate value="2011-2013" />
-          <Trl fr="Niveau BTS assistant de gestion" en="Administrative Assistant (sandwich course)" />
+          <Trl fr="Niveau BTS assistant de gestion" en="Administrative Assistant" />
           <ul>
             <li><Trl fr="IFA à Metz" en="French Institute of Affairs, Metz" /></li>
           </ul>
